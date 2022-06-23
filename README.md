@@ -45,7 +45,7 @@ clusterCornerAxes(object = tmp,reduction = 'umap',
 
 ![](https://files.mdnice.com/user/15573/724a0c5b-742c-468d-be95-2408e4ad5ddf.png)
 
-We can facet by seurat metadata column catogary viarible:
+We can facet by seurat metadata column catogary variable:
 
 ```R
 # facet by metadata column "orig.ident"

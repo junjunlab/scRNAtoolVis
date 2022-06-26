@@ -91,6 +91,20 @@ clusterCornerAxes(object = tmp,reduction = 'tsne',
 
 ![](https://files.mdnice.com/user/15573/bd1ceafb-ac51-4f8f-b27a-5c544e0952ab.png)
 
+Change a cool theme:
+
+```R
+clusterCornerAxes(object = tmp,
+                  reduction = 'umap',
+                  noSplit = F,
+                  groupFacet = 'orig.ident',
+                  relLength = 0.5,
+                  cornerTextSize = 4,
+                  themebg = 'bwCorner')
+```
+
+![image](https://user-images.githubusercontent.com/64965509/175820384-5b22bc10-4952-4175-aab9-15ecaf9af5c9.png)
+
 ## FeatureCornerAxes
 
 **FeatureCornerAxes** is used to add corner axises on the gene expression reduction map:
@@ -130,6 +144,19 @@ FeatureCornerAxes(object = tmp,reduction = 'tsne',
 ```
 
 ![](https://files.mdnice.com/user/15573/ec1c34c8-26b2-412b-b7b2-9c222e122865.png)
+
+Change a cool theme:
+
+```R
+# umap
+FeatureCornerAxes(object = tmp,reduction = 'umap',
+                  groupFacet = 'orig.ident',
+                  features = c("Actb","Ythdc1"),
+                  cornerTextSize = 3,
+                  themebg = 'bwCorner')
+```
+
+![image](https://user-images.githubusercontent.com/64965509/175820441-5214ce1a-ff41-4905-b779-607a4b5d0f6f.png)
 
 ## AverageHeatmap
 

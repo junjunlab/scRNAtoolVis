@@ -17,6 +17,9 @@
 #' @param pSize "num",point size.
 #' @param arrowType "string",arrow type (open/closed),defaults "closed".
 #' @param lineTextcol "string",facet balckground color,defaults "white".
+#' @param cornerTextSize "num", the corner label text size, defaults is 5.
+#' @param base_size "num", theme base size, defaults is 14.
+#' @param themebg Another theme style, defaults is 'default', or 'bwCorner'.
 #' @return
 #' @export
 #' @examples
@@ -65,7 +68,10 @@ FeatureCornerAxes <- function(object,
                               stripCol = 'white',
                               pSize = 1,
                               arrowType = 'closed',
-                              lineTextcol = 'black') {
+                              lineTextcol = 'black',
+                              cornerTextSize = 5,
+                              base_size = 14,
+                              themebg = 'default') {
   # make PC data
   reduc <- data.frame(Seurat::Embeddings(object, reduction = reduction))
 
@@ -160,10 +166,10 @@ FeatureCornerAxes <- function(object,
     tmpdf <- dplyr::filter(megredf,gene_name == x)
 
     # plot
-    p <- ggplot2::ggplot(tmpdf,
+    p1 <- ggplot2::ggplot(tmpdf,
                          ggplot2::aes(x = tmpdf[, 1], y = tmpdf[, 2])) +
       ggplot2::geom_point(ggplot2::aes(color = scaledValue), size = pSize) +
-      ggplot2::theme_classic(base_size = 14) +
+      ggplot2::theme_classic(base_size = base_size) +
       ggplot2::scale_color_gradient(name = '',
                            low = low,
                            high = high) +
@@ -197,12 +203,26 @@ FeatureCornerAxes <- function(object,
           angle = angle,
           label = lab
         ),
-        fontface = 'italic'
+        fontface = 'italic',
+        size = cornerTextSize
       )
-    return(p)
+
+    # theme style
+    if(themebg == 'bwCorner'){
+      p2 <- p1 +
+        ggplot2::theme_bw(base_size = base_size) +
+        ggplot2::theme(panel.grid = ggplot2::element_blank(),
+                       axis.text = ggplot2::element_blank(),
+                       axis.ticks = ggplot2::element_blank(),
+                       aspect.ratio = 1,
+                       strip.background = ggplot2::element_rect(colour = NA,fill = stripCol))
+      return(p2)
+    }else if(themebg == 'default'){
+      return(p1)
+    }
   }) -> plst
 
   # combine
-  p1 <- patchwork::wrap_plots(plst, ncol = ColGene, guides = "collect")
-  return(p1)
+  p3 <- patchwork::wrap_plots(plst, ncol = ColGene, guides = "collect")
+  return(p3)
 }

@@ -1,19 +1,22 @@
 #' @name clusterCornerAxes
 #' @title Add corner axes on seurat UMAP/tSNE cluster figures
 #' @param object seurat object.
-#' @param reduction "string",reduction type (umap/tsne).
-#' @param groupFacet "string",give the column name in seurat metadata to facet plot.
-#' @param clusterCol "string",the point color to group by,cluster name,defaults "seurat_clusters".
-#' @param pSize "num",point size.
-#' @param noSplit 'logic',whether to split/facet the plot,defaults "TRUE".
-#' @param nrow "num",rows to plot when noSplit = FALSE.
-#' @param relLength 'num',the corner axis line relative length to plot axis(0-1).
-#' @param relDist "num",the relative distance of corner axis label to axis.
-#' @param axes "string",show multiple corner axis or only one (mul/one),defaults "mul".
-#' @param legendPos "string",legend position same as ggplot theme function,defaults "right".
-#' @param lineTextcol "string",corner line and label color,defaults "black".
-#' @param stripCol "string",facet balckground color,defaults "white".
-#' @param arrowType "string",arrow type (open/closed),defaults "closed".
+#' @param reduction "string", reduction type (umap/tsne).
+#' @param groupFacet "string", give the column name in seurat metadata to facet plot.
+#' @param clusterCol "string", the point color to group by,cluster name, defaults "seurat_clusters".
+#' @param pSize "num", point size.
+#' @param noSplit 'logic', whether to split/facet the plot, defaults "TRUE".
+#' @param nrow "num", rows to plot when noSplit = FALSE.
+#' @param relLength 'num', the corner axis line relative length to plot axis(0-1).
+#' @param relDist "num" ,the relative distance of corner axis label to axis.
+#' @param axes "string", show multiple corner axis or only one (mul/one), defaults "mul".
+#' @param legendPos "string", legend position same as ggplot theme function, defaults "right".
+#' @param lineTextcol "string", corner line and label color, defaults "black".
+#' @param stripCol "string", facet balckground color, defaults "white".
+#' @param arrowType "string", arrow type (open/closed), defaults "closed".
+#' @param cornerTextSize "num", the corner label text size, defaults is 5.
+#' @param base_size "num", theme base size, defaults is 14.
+#' @param themebg Another theme style, defaults is 'default', or 'bwCorner'.
 #' @return
 #' @export
 #' @examples
@@ -68,7 +71,10 @@ clusterCornerAxes <- function(object,
                               legendPos = 'right',
                               lineTextcol = 'black',
                               stripCol = 'white',
-                              arrowType = 'closed') {
+                              arrowType = 'closed',
+                              cornerTextSize = 5,
+                              base_size = 14,
+                              themebg = 'default') {
   # make PC data
   reduc <-
     data.frame(Seurat::Embeddings(object, reduction = reduction))
@@ -147,7 +153,7 @@ clusterCornerAxes <- function(object,
                        ggplot2::aes(x = pc12[, 1], y = pc12[, 2])) +
     ggplot2::geom_point(ggplot2::aes_string(color = clusterCol),
                         size = pSize) +
-    ggplot2::theme_classic(base_size = 14) +
+    ggplot2::theme_classic(base_size = base_size) +
     ggplot2::labs(x = '', y = '') +
     ggplot2::theme(
       strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
@@ -177,13 +183,28 @@ clusterCornerAxes <- function(object,
         angle = angle,
         label = lab
       ),
-      fontface = 'italic'
+      fontface = 'italic',
+      size = cornerTextSize,
     )
 
+  # facet plot
   if (noSplit == TRUE) {
-    return(p)
+    p1 <- p
   } else{
     p1 <- p + ggplot2::facet_wrap( ~ get(groupFacet), nrow = nrow)
+  }
+
+  # theme style
+  if(themebg == 'bwCorner'){
+    p2 <- p1 +
+      ggplot2::theme_bw(base_size = base_size) +
+      ggplot2::theme(panel.grid = ggplot2::element_blank(),
+                     axis.text = ggplot2::element_blank(),
+                     axis.ticks = ggplot2::element_blank(),
+                     aspect.ratio = 1,
+                     strip.background = ggplot2::element_rect(colour = NA,fill = stripCol))
+    return(p2)
+  }else if(themebg == 'default'){
     return(p1)
   }
 }

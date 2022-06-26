@@ -35,6 +35,12 @@
 \item{arrowType}{"string",arrow type (open/closed),defaults "closed".}
 
 \item{lineTextcol}{"string",facet balckground color,defaults "white".}
+
+\item{cornerTextSize}{"num", the corner label text size, defaults is 5.}
+
+\item{base_size}{"num", theme base size, defaults is 14.}
+
+\item{themebg}{Another theme style, defaults is 'default', or 'bwCorner'.}
 }
 \value{
 

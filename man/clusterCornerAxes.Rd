@@ -6,31 +6,37 @@
 \arguments{
 \item{object}{seurat object.}
 
-\item{reduction}{"string",reduction type (umap/tsne).}
+\item{reduction}{"string", reduction type (umap/tsne).}
 
-\item{groupFacet}{"string",give the column name in seurat metadata to facet plot.}
+\item{groupFacet}{"string", give the column name in seurat metadata to facet plot.}
 
-\item{clusterCol}{"string",the point color to group by,cluster name,defaults "seurat_clusters".}
+\item{clusterCol}{"string", the point color to group by,cluster name, defaults "seurat_clusters".}
 
-\item{pSize}{"num",point size.}
+\item{pSize}{"num", point size.}
 
-\item{noSplit}{'logic',whether to split/facet the plot,defaults "TRUE".}
+\item{noSplit}{'logic', whether to split/facet the plot, defaults "TRUE".}
 
-\item{nrow}{"num",rows to plot when noSplit = FALSE.}
+\item{nrow}{"num", rows to plot when noSplit = FALSE.}
 
-\item{relLength}{'num',the corner axis line relative length to plot axis(0-1).}
+\item{relLength}{'num', the corner axis line relative length to plot axis(0-1).}
 
-\item{relDist}{"num",the relative distance of corner axis label to axis.}
+\item{relDist}{"num" ,the relative distance of corner axis label to axis.}
 
-\item{axes}{"string",show multiple corner axis or only one (mul/one),defaults "mul".}
+\item{axes}{"string", show multiple corner axis or only one (mul/one), defaults "mul".}
 
-\item{legendPos}{"string",legend position same as ggplot theme function,defaults "right".}
+\item{legendPos}{"string", legend position same as ggplot theme function, defaults "right".}
 
-\item{lineTextcol}{"string",corner line and label color,defaults "black".}
+\item{lineTextcol}{"string", corner line and label color, defaults "black".}
 
-\item{stripCol}{"string",facet balckground color,defaults "white".}
+\item{stripCol}{"string", facet balckground color, defaults "white".}
 
-\item{arrowType}{"string",arrow type (open/closed),defaults "closed".}
+\item{arrowType}{"string", arrow type (open/closed), defaults "closed".}
+
+\item{cornerTextSize}{"num", the corner label text size, defaults is 5.}
+
+\item{base_size}{"num", theme base size, defaults is 14.}
+
+\item{themebg}{Another theme style, defaults is 'default', or 'bwCorner'.}
 }
 \value{
 

@@ -131,6 +131,41 @@ FeatureCornerAxes(object = tmp,reduction = 'tsne',
 
 ![](https://files.mdnice.com/user/15573/ec1c34c8-26b2-412b-b7b2-9c222e122865.png)
 
+## AverageHeatmap
+
+**AverageHeatmap** is used to plot averaged expression cross cluster cells.
+
+load data:
+
+```R
+httest <- system.file("extdata", "htdata.RDS", package = "scRNAtoolVis")
+pbmc <- readRDS(httest)
+
+# load markergene
+markergene <- system.file("extdata", "top5pbmc.markers.csv", package = "scRNAtoolVis")
+markers <- read.table(markergene, sep = ',', header = TRUE)
+```
+plot:
+
+```R
+# plot
+AverageHeatmap(object = pbmc,
+               markerGene = markers$gene)
+```
+
+![image](https://user-images.githubusercontent.com/64965509/175778192-0d898fa3-c72e-44e0-8b4f-c47c9d71e3ef.png)
+
+change color:
+
+```R
+# change color
+AverageHeatmap(object = pbmc,
+               markerGene = markers$gene,
+               htCol = c("#339933", "#FFCC00", "#FF0033"))
+```
+
+![image](https://user-images.githubusercontent.com/64965509/175778256-87ce45b9-45f7-4a25-ba28-8c8335107bc1.png)
+
 ## help
 
 More parameters refer to:
@@ -138,5 +173,6 @@ More parameters refer to:
 ```R
 ?clusterCornerAxes
 ?FeatureCornerAxes
+?AverageHeatmap
 ```
 

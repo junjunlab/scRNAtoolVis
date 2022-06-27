@@ -10,4 +10,4 @@ devtools::install_github('junjunlab/scRNAtoolVis')
 library(scRNAtoolVis)
 ```
 
-> More examples see: https://github.com/junjunlab/scRNAtoolVis/wiki/scRNAtoolVis-documentation. 
+> More examples see: [https://github.com/junjunlab/scRNAtoolVis/wiki/scRNAtoolVis-documentation. ](https://github.com/junjunlab/scRNAtoolVis/wiki/scRNAtoolVis-documentation.)

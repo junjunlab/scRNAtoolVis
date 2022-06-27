@@ -60,8 +60,12 @@ AverageHeatmap <- function(object,
                                                                   slot = slot)))
 
   # add colnames
-  name1 <- gsub(pattern = assays,replacement = '',colnames(mean_gene_exp))
-  colnames(mean_gene_exp) <- gsub(pattern = '\\.',replacement = ' ',name1)
+  name1 <- gsub(pattern = paste0(assays,'.',sep = ''),
+                replacement = '',
+                colnames(mean_gene_exp))
+
+  colnames(mean_gene_exp) <- gsub(pattern = '\\.',
+                                  replacement = ' ',name1)
 
   # Z-score
   htdf <- t(scale(t(mean_gene_exp),scale = T,center = T))

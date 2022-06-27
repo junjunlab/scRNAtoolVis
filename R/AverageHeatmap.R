@@ -8,6 +8,7 @@
 #' @param htCol Heatmap colors. Default is c("#0099CC", "white", "#CC0033").
 #' @param colseed Cluster annotaion colors seed, these colors are produed randomly, so you can give a seed to assure produce same colors.  Default is 666.
 #' @param htRange Heatmap values range. Default is c(-2, 0, 2).
+#' @param annoCol You can specify your own annotation clusters colors vectors. Default is 'none'.
 #' @param annoColType Cluster annotaion colors type (bright, light, dark and random). Default is light.
 #' @param annoColTypeAlpha Cluster annotaion colors transparency. Default is 0.
 #' @param row_title Heatmap row title. Default is "Cluster top Marker genes".
@@ -45,6 +46,7 @@ AverageHeatmap <- function(object,
                            htCol = c("#0099CC", "white", "#CC0033"),
                            colseed = 666,
                            htRange = c(-2, 0, 2),
+                           annoCol = 'none',
                            annoColType = 'light',
                            annoColTypeAlpha = 0,
                            row_title = "Cluster top Marker genes",
@@ -74,12 +76,16 @@ AverageHeatmap <- function(object,
   col_fun = circlize::colorRamp2(htRange,htCol)
 
   # anno color
-  # sample(1:100,1,replace = F)
-  set.seed(colseed)
-  anno_col <- circlize::rand_color(ncol(htdf),
-                                   luminosity = annoColType,
-                                   transparency	= annoColTypeAlpha)
-  print(c('Your cluster annotation color is:',anno_col))
+  if(annoCol == 'none'){
+    set.seed(colseed)
+    anno_col <- circlize::rand_color(ncol(htdf),
+                                     luminosity = annoColType,
+                                     transparency	= annoColTypeAlpha)
+    print(c('Your cluster annotation color is:',anno_col))
+  }else{
+    # give your own color vectors
+    anno_col <- annoCol
+  }
   names(anno_col) <- colnames(htdf)
 
   # top annotation

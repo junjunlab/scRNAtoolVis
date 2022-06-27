@@ -13,6 +13,7 @@ AverageHeatmap(
   htCol = c("#0099CC", "white", "#CC0033"),
   colseed = 666,
   htRange = c(-2, 0, 2),
+  annoCol = "none",
   annoColType = "light",
   annoColTypeAlpha = 0,
   row_title = "Cluster top Marker genes",
@@ -38,6 +39,8 @@ AverageHeatmap(
 \item{colseed}{Cluster annotaion colors seed, these colors are produed randomly, so you can give a seed to assure produce same colors.  Default is 666.}
 
 \item{htRange}{Heatmap values range. Default is c(-2, 0, 2).}
+
+\item{annoCol}{You can specify your own annotation clusters colors vectors. Default is 'none'.}
 
 \item{annoColType}{Cluster annotaion colors type (bright, light, dark and random). Default is light.}
 

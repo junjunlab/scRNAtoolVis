@@ -19,7 +19,7 @@
 #' @param cornerTextSize "num", the corner label text size, defaults is 5.
 #' @param base_size "num", theme base size, defaults is 14.
 #' @param themebg Another theme style, defaults is 'default', or 'bwCorner'.
-#' @return
+#' @return Return a ggplot.
 #' @export
 #' @examples
 #'

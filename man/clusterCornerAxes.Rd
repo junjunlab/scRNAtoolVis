@@ -39,7 +39,7 @@
 \item{themebg}{Another theme style, defaults is 'default', or 'bwCorner'.}
 }
 \value{
-
+Return a ggplot.
 }
 \description{
 Add corner axes on seurat UMAP/tSNE cluster figures

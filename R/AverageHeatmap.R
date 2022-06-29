@@ -18,7 +18,7 @@
 #' @param fontsize Heatmap gene name fontsize. Default is 10.
 #' @param column_names_rot Cluster name rotation. Default is 45.
 #'
-#' @return
+#' @return Return a plot.
 #' @export
 #'
 #' @examples

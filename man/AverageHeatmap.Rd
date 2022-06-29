@@ -60,7 +60,7 @@ AverageHeatmap(
 \item{column_names_rot}{Cluster name rotation. Default is 45.}
 }
 \value{
-
+Return a plot.
 }
 \description{
 Plot averaged gene expression cross cluster cells

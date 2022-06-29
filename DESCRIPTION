@@ -14,7 +14,10 @@ Imports:
     ComplexHeatmap,
     dplyr,
     ggplot2,
+    ggrepel,
+    ggsci,
     grid,
+    magrittr,
     patchwork,
     reshape2,
     Seurat

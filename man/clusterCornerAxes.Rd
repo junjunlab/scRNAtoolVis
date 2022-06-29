@@ -50,32 +50,45 @@ test <- system.file("extdata", "seuratTest.RDS", package = "scRNAtoolVis")
 tmp <- readRDS(test)
 
 # umap
-clusterCornerAxes(object = tmp,reduction = 'umap',
-                  noSplit = TRUE)
+clusterCornerAxes(
+  object = tmp, reduction = "umap",
+  noSplit = TRUE
+)
 
 # arrowType
-clusterCornerAxes(object = tmp,reduction = 'umap',
-                  noSplit = TRUE,arrowType = 'open')
+clusterCornerAxes(
+  object = tmp, reduction = "umap",
+  noSplit = TRUE, arrowType = "open"
+)
 
 # facet by metadata column "orig.ident"
-clusterCornerAxes(object = tmp,reduction = 'umap',
-                  noSplit = FALSE,groupFacet = 'orig.ident',
-                  relLength = 0.5)
+clusterCornerAxes(
+  object = tmp, reduction = "umap",
+  noSplit = FALSE, groupFacet = "orig.ident",
+  relLength = 0.5
+)
 
 # retain only one axes
-clusterCornerAxes(object = tmp,reduction = 'umap',
-                  noSplit = FALSE,groupFacet = 'orig.ident',
-                  relLength = 0.5,
-                  axes = 'one')
+clusterCornerAxes(
+  object = tmp, reduction = "umap",
+  noSplit = FALSE, groupFacet = "orig.ident",
+  relLength = 0.5,
+  axes = "one"
+)
 
 # line color
-clusterCornerAxes(object = tmp,reduction = 'umap',
-                  noSplit = FALSE,groupFacet = 'orig.ident',
-                  relLength = 0.5,
-                  lineTextcol = 'grey50')
+clusterCornerAxes(
+  object = tmp, reduction = "umap",
+  noSplit = FALSE, groupFacet = "orig.ident",
+  relLength = 0.5,
+  lineTextcol = "grey50"
+)
 
 # tsne
-clusterCornerAxes(object = tmp,reduction = 'tsne',
-                  noSplit = FALSE,groupFacet = 'orig.ident',
-                  relLength = 0.5)
+clusterCornerAxes(
+  object = tmp, reduction = "tsne",
+  noSplit = FALSE, groupFacet = "orig.ident",
+  relLength = 0.5
+)
+
 }

@@ -1,4 +1,3 @@
-# define function
 #' @name FeatureCornerAxes
 #' @title Add corner axes on seurat UMAP/tSNE gene FeaturePlot function figures
 #' @param object object seurat object.
@@ -29,49 +28,55 @@
 #' tmp <- readRDS(test)
 #'
 #' # umap
-#' FeatureCornerAxes(object = tmp,reduction = 'umap',
-#'                   groupFacet = 'orig.ident',
-#'                   relLength = 0.5,relDist = 0.2,
-#'                   features = c("Actb","Ythdc1", "Ythdf2"))
+#' FeatureCornerAxes(
+#'   object = tmp, reduction = "umap",
+#'   groupFacet = "orig.ident",
+#'   relLength = 0.5, relDist = 0.2,
+#'   features = c("Actb", "Ythdc1", "Ythdf2")
+#' )
 #'
 #' # one axes
-#' FeatureCornerAxes(object = tmp,reduction = 'umap',
-#'                   groupFacet = 'orig.ident',
-#'                   features = c("Actb","Ythdc1", "Ythdf2"),
-#'                   relLength = 0.5,relDist = 0.2,
-#'                   axes = 'one',
-#'                   lineTextcol = 'grey50')
+#' FeatureCornerAxes(
+#'   object = tmp, reduction = "umap",
+#'   groupFacet = "orig.ident",
+#'   features = c("Actb", "Ythdc1", "Ythdf2"),
+#'   relLength = 0.5, relDist = 0.2,
+#'   axes = "one",
+#'   lineTextcol = "grey50"
+#' )
 #'
 #' # tsne
-#' FeatureCornerAxes(object = tmp,reduction = 'tsne',
-#'                   groupFacet = 'orig.ident',
-#'                   relLength = 0.5,relDist = 0.2,
-#'                   features = c("Actb","Ythdc1", "Ythdf2"))
-
-
+#' FeatureCornerAxes(
+#'   object = tmp, reduction = "tsne",
+#'   groupFacet = "orig.ident",
+#'   relLength = 0.5, relDist = 0.2,
+#'   features = c("Actb", "Ythdc1", "Ythdf2")
+#' )
+#'
+#'
 # define viriables
-globalVariables(c("x1", "y1", "linegrou","angle","lab","gene_name","scaledValue"))
+globalVariables(c("x1", "y1", "linegrou", "angle", "lab", "gene_name", "scaledValue"))
 
 # define function
-FeatureCornerAxes <- function(object,
-                              reduction = 'umap',
-                              features,
-                              groupFacet = groupFacet,
+FeatureCornerAxes <- function(object = NULL,
+                              reduction = "umap",
+                              features = NULL,
+                              groupFacet = "orig.ident",
                               relLength = 0.25,
                               relDist = 0.1,
-                              low = 'lightgrey',
-                              high = 'red',
-                              axes = 'mul',
-                              legendPos = 'right',
+                              low = "lightgrey",
+                              high = "red",
+                              axes = "mul",
+                              legendPos = "right",
                               RowSample = 1,
                               ColGene = 1,
-                              stripCol = 'white',
+                              stripCol = "white",
                               pSize = 1,
-                              arrowType = 'closed',
-                              lineTextcol = 'black',
+                              arrowType = "closed",
+                              lineTextcol = "black",
                               cornerTextSize = 5,
                               base_size = 14,
-                              themebg = 'default') {
+                              themebg = "default") {
   # make PC data
   reduc <- data.frame(Seurat::Embeddings(object, reduction = reduction))
 
@@ -91,8 +96,8 @@ FeatureCornerAxes <- function(object,
   megredf <- reshape2::melt(
     mer,
     id.vars = colnames(pc12),
-    variable.name = 'gene_name',
-    value.name = 'scaledValue'
+    variable.name = "gene_name",
+    value.name = "scaledValue"
   )
 
   # data range
@@ -111,51 +116,51 @@ FeatureCornerAxes <- function(object,
   mid <- abs(relLength * lower) / 2 + lower
 
   # give reduction type
-  if (reduction == 'umap') {
-    axs_label <- paste('UMAP', 2:1, sep = '')
-  } else if (reduction == 'tsne') {
-    axs_label <- paste('t-SNE', 2:1, sep = '')
-  } else{
-    print('Please give correct type(umap or tsne)!')
+  if (reduction == "umap") {
+    axs_label <- paste("UMAP", 2:1, sep = "")
+  } else if (reduction == "tsne") {
+    axs_label <- paste("t-SNE", 2:1, sep = "")
+  } else {
+    print("Please give correct type(umap or tsne)!")
   }
 
-  if (axes == 'mul') {
+  if (axes == "mul") {
     # axies data
     axes <- data.frame(
-      'x1' = c(lower, lower, lower, linelen),
-      'y1' = c(lower, linelen, lower, lower),
-      'linegrou' = c(1, 1, 2, 2)
+      "x1" = c(lower, lower, lower, linelen),
+      "y1" = c(lower, linelen, lower, lower),
+      "linegrou" = c(1, 1, 2, 2)
     )
     # axies label
     label <- data.frame(
-      'lab' = c(axs_label),
-      'angle' = c(90, 0),
-      'x1' = c(lower - labelRel, mid),
-      'y1' = c(mid, lower - labelRel)
+      "lab" = c(axs_label),
+      "angle" = c(90, 0),
+      "x1" = c(lower - labelRel, mid),
+      "y1" = c(mid, lower - labelRel)
     )
-  } else if (axes == 'one') {
+  } else if (axes == "one") {
     firstFacet <- unique(pc12[, groupFacet])[1]
     # axies data
     axes <- data.frame(
-      'x1' = c(lower, lower, lower, linelen),
-      'y1' = c(lower, linelen, lower, lower),
-      'linegrou' = c(1, 1, 2, 2),
-      'group' = rep(firstFacet, 2)
+      "x1" = c(lower, lower, lower, linelen),
+      "y1" = c(lower, linelen, lower, lower),
+      "linegrou" = c(1, 1, 2, 2),
+      "group" = rep(firstFacet, 2)
     )
     # axies label
     label <- data.frame(
-      'lab' = c(axs_label),
+      "lab" = c(axs_label),
       angle = c(90, 0),
-      'x1' = c(lower - labelRel, mid),
-      'y1' = c(mid, lower - labelRel),
-      'group' = rep(firstFacet, 2)
+      "x1" = c(lower - labelRel, mid),
+      "y1" = c(mid, lower - labelRel),
+      "group" = rep(firstFacet, 2)
     )
 
     # rename group name
     colnames(axes)[4] <- groupFacet
     colnames(label)[5] <- groupFacet
-  } else{
-    print('Please give correct args(mul or one)!')
+  } else {
+    print("Please give correct args(mul or one)!")
   }
 
   # sample
@@ -163,17 +168,21 @@ FeatureCornerAxes <- function(object,
 
   # bacth plot
   lapply(genes, function(x) {
-    tmpdf <- dplyr::filter(megredf,gene_name == x)
+    tmpdf <- dplyr::filter(megredf, gene_name == x)
 
     # plot
-    p1 <- ggplot2::ggplot(tmpdf,
-                         ggplot2::aes(x = tmpdf[, 1], y = tmpdf[, 2])) +
+    p1 <- ggplot2::ggplot(
+      tmpdf,
+      ggplot2::aes(x = tmpdf[, 1], y = tmpdf[, 2])
+    ) +
       ggplot2::geom_point(ggplot2::aes(color = scaledValue), size = pSize) +
       ggplot2::theme_classic(base_size = base_size) +
-      ggplot2::scale_color_gradient(name = '',
-                           low = low,
-                           high = high) +
-      ggplot2::labs(x = '', y = x) +
+      ggplot2::scale_color_gradient(
+        name = "",
+        low = low,
+        high = high
+      ) +
+      ggplot2::labs(x = "", y = x) +
       ggplot2::theme(
         strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
         aspect.ratio = 1,
@@ -183,7 +192,7 @@ FeatureCornerAxes <- function(object,
         axis.ticks = ggplot2::element_blank(),
         axis.text = ggplot2::element_blank()
       ) +
-      ggplot2::facet_wrap( ~ get(groupFacet), nrow = RowSample) +
+      ggplot2::facet_wrap(~get(groupFacet), nrow = RowSample) +
       ggplot2::geom_line(
         data = axes,
         color = lineTextcol,
@@ -203,21 +212,23 @@ FeatureCornerAxes <- function(object,
           angle = angle,
           label = lab
         ),
-        fontface = 'italic',
+        fontface = "italic",
         size = cornerTextSize
       )
 
     # theme style
-    if(themebg == 'bwCorner'){
+    if (themebg == "bwCorner") {
       p2 <- p1 +
         ggplot2::theme_bw(base_size = base_size) +
-        ggplot2::theme(panel.grid = ggplot2::element_blank(),
-                       axis.text = ggplot2::element_blank(),
-                       axis.ticks = ggplot2::element_blank(),
-                       aspect.ratio = 1,
-                       strip.background = ggplot2::element_rect(colour = NA,fill = stripCol))
+        ggplot2::theme(
+          panel.grid = ggplot2::element_blank(),
+          axis.text = ggplot2::element_blank(),
+          axis.ticks = ggplot2::element_blank(),
+          aspect.ratio = 1,
+          strip.background = ggplot2::element_rect(colour = NA, fill = stripCol)
+        )
       return(p2)
-    }else if(themebg == 'default'){
+    } else if (themebg == "default") {
       return(p1)
     }
   }) -> plst

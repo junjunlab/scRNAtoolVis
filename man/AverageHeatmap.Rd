@@ -5,8 +5,8 @@
 \title{Plot averaged gene expression cross cluster cells}
 \usage{
 AverageHeatmap(
-  object,
-  markerGene,
+  object = NULL,
+  markerGene = NULL,
   group.by = "ident",
   assays = "RNA",
   slot = "data",
@@ -71,14 +71,19 @@ pbmc <- readRDS(httest)
 
 # load markergene
 markergene <- system.file("extdata", "top5pbmc.markers.csv", package = "scRNAtoolVis")
-markers <- read.table(markergene, sep = ',', header = TRUE)
+markers <- read.table(markergene, sep = ",", header = TRUE)
 
 # plot
-AverageHeatmap(object = pbmc,
-              markerGene = markers$gene)
+AverageHeatmap(
+  object = pbmc,
+  markerGene = markers$gene
+)
 
 # change color
-AverageHeatmap(object = pbmc,
-              markerGene = markers$gene,
-              htCol = c("#339933", "#FFCC00", "#FF0033"))
+AverageHeatmap(
+  object = pbmc,
+  markerGene = markers$gene,
+  htCol = c("#339933", "#FFCC00", "#FF0033")
+)
+
 }

@@ -25,56 +25,68 @@
 #' tmp <- readRDS(test)
 #'
 #' # umap
-#' clusterCornerAxes(object = tmp,reduction = 'umap',
-#'                   noSplit = TRUE)
+#' clusterCornerAxes(
+#'   object = tmp, reduction = "umap",
+#'   noSplit = TRUE
+#' )
 #'
 #' # arrowType
-#' clusterCornerAxes(object = tmp,reduction = 'umap',
-#'                   noSplit = TRUE,arrowType = 'open')
+#' clusterCornerAxes(
+#'   object = tmp, reduction = "umap",
+#'   noSplit = TRUE, arrowType = "open"
+#' )
 #'
 #' # facet by metadata column "orig.ident"
-#' clusterCornerAxes(object = tmp,reduction = 'umap',
-#'                   noSplit = FALSE,groupFacet = 'orig.ident',
-#'                   relLength = 0.5)
+#' clusterCornerAxes(
+#'   object = tmp, reduction = "umap",
+#'   noSplit = FALSE, groupFacet = "orig.ident",
+#'   relLength = 0.5
+#' )
 #'
 #' # retain only one axes
-#' clusterCornerAxes(object = tmp,reduction = 'umap',
-#'                   noSplit = FALSE,groupFacet = 'orig.ident',
-#'                   relLength = 0.5,
-#'                   axes = 'one')
+#' clusterCornerAxes(
+#'   object = tmp, reduction = "umap",
+#'   noSplit = FALSE, groupFacet = "orig.ident",
+#'   relLength = 0.5,
+#'   axes = "one"
+#' )
 #'
 #' # line color
-#' clusterCornerAxes(object = tmp,reduction = 'umap',
-#'                   noSplit = FALSE,groupFacet = 'orig.ident',
-#'                   relLength = 0.5,
-#'                   lineTextcol = 'grey50')
+#' clusterCornerAxes(
+#'   object = tmp, reduction = "umap",
+#'   noSplit = FALSE, groupFacet = "orig.ident",
+#'   relLength = 0.5,
+#'   lineTextcol = "grey50"
+#' )
 #'
 #' # tsne
-#' clusterCornerAxes(object = tmp,reduction = 'tsne',
-#'                   noSplit = FALSE,groupFacet = 'orig.ident',
-#'                   relLength = 0.5)
-
+#' clusterCornerAxes(
+#'   object = tmp, reduction = "tsne",
+#'   noSplit = FALSE, groupFacet = "orig.ident",
+#'   relLength = 0.5
+#' )
+#'
 # define viriables
-globalVariables(c("x1", "y1", "linegrou","angle","lab"))
+globalVariables(c("x1", "y1", "linegrou", "angle", "lab"))
 
 # define function
-clusterCornerAxes <- function(object,
-                              reduction = 'umap',
+clusterCornerAxes <- function(object = NULL,
+                              reduction = "umap",
                               groupFacet = groupFacet,
-                              clusterCol = 'seurat_clusters',
+                              clusterCol = "seurat_clusters",
                               pSize = 1,
                               noSplit = TRUE,
                               nrow = 1,
                               relLength = 0.25,
                               relDist = 0.1,
-                              axes = 'mul',
-                              legendPos = 'right',
-                              lineTextcol = 'black',
-                              stripCol = 'white',
-                              arrowType = 'closed',
+                              axes = "mul",
+                              legendPos = "right",
+                              lineTextcol = "black",
+                              stripCol = "white",
+                              arrowType = "closed",
                               cornerTextSize = 5,
                               base_size = 14,
-                              themebg = 'default') {
+                              themebg = "default") {
   # make PC data
   reduc <-
     data.frame(Seurat::Embeddings(object, reduction = reduction))
@@ -101,60 +113,63 @@ clusterCornerAxes <- function(object,
   mid <- abs(relLength * lower) / 2 + lower
 
   # give reduction type
-  if (reduction == 'umap') {
-    axs_label <- paste('UMAP', 2:1, sep = '')
-  } else if (reduction == 'tsne') {
-    axs_label <- paste('t-SNE', 2:1, sep = '')
-  } else{
-    print('Please give correct type(umap or tsne)!')
+  if (reduction == "umap") {
+    axs_label <- paste("UMAP", 2:1, sep = "")
+  } else if (reduction == "tsne") {
+    axs_label <- paste("t-SNE", 2:1, sep = "")
+  } else {
+    print("Please give correct type(umap or tsne)!")
   }
 
-  if (axes == 'mul') {
+  if (axes == "mul") {
     # axies data
     axes <- data.frame(
-      'x1' = c(lower, lower, lower, linelen),
-      'y1' = c(lower, linelen, lower, lower),
-      'linegrou' = c(1, 1, 2, 2)
+      "x1" = c(lower, lower, lower, linelen),
+      "y1" = c(lower, linelen, lower, lower),
+      "linegrou" = c(1, 1, 2, 2)
     )
     # axies label
     label <- data.frame(
-      'lab' = c(axs_label),
-      'angle' = c(90, 0),
-      'x1' = c(lower - labelRel, mid),
-      'y1' = c(mid, lower - labelRel)
+      "lab" = c(axs_label),
+      "angle" = c(90, 0),
+      "x1" = c(lower - labelRel, mid),
+      "y1" = c(mid, lower - labelRel)
     )
-  } else if (axes == 'one') {
+  } else if (axes == "one") {
     firstFacet <- unique(pc12[, groupFacet])[1]
     # axies data
     axes <- data.frame(
-      'x1' = c(lower, lower, lower, linelen),
-      'y1' = c(lower, linelen, lower, lower),
-      'linegrou' = c(1, 1, 2, 2),
-      'group' = rep(firstFacet, 2)
+      "x1" = c(lower, lower, lower, linelen),
+      "y1" = c(lower, linelen, lower, lower),
+      "linegrou" = c(1, 1, 2, 2),
+      "group" = rep(firstFacet, 2)
     )
     # axies label
     label <- data.frame(
-      'lab' = c(axs_label),
-      'angle' = c(90, 0),
-      'x1' = c(lower - labelRel, mid),
-      'y1' = c(mid, lower - labelRel),
-      'group' = rep(firstFacet, 2)
+      "lab" = c(axs_label),
+      "angle" = c(90, 0),
+      "x1" = c(lower - labelRel, mid),
+      "y1" = c(mid, lower - labelRel),
+      "group" = rep(firstFacet, 2)
     )
 
     # rename group name
     colnames(axes)[4] <- groupFacet
     colnames(label)[5] <- groupFacet
-  } else{
-    print('Please give correct args(mul or one)!')
+  } else {
+    print("Please give correct args(mul or one)!")
   }
 
   # plot
-  p <- ggplot2::ggplot(pc12,
-                       ggplot2::aes(x = pc12[, 1], y = pc12[, 2])) +
+  p <- ggplot2::ggplot(
+    pc12,
+    ggplot2::aes(x = pc12[, 1], y = pc12[, 2])
+  ) +
     ggplot2::geom_point(ggplot2::aes_string(color = clusterCol),
-                        size = pSize) +
+      size = pSize
+    ) +
     ggplot2::theme_classic(base_size = base_size) +
-    ggplot2::labs(x = '', y = '') +
+    ggplot2::labs(x = "", y = "") +
     ggplot2::theme(
       strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
       aspect.ratio = 1,
@@ -183,28 +198,30 @@ clusterCornerAxes <- function(object,
         angle = angle,
         label = lab
       ),
-      fontface = 'italic',
+      fontface = "italic",
       size = cornerTextSize,
     )
 
   # facet plot
   if (noSplit == TRUE) {
     p1 <- p
-  } else{
-    p1 <- p + ggplot2::facet_wrap( ~ get(groupFacet), nrow = nrow)
+  } else {
+    p1 <- p + ggplot2::facet_wrap(~ get(groupFacet), nrow = nrow)
   }
 
   # theme style
-  if(themebg == 'bwCorner'){
+  if (themebg == "bwCorner") {
     p2 <- p1 +
       ggplot2::theme_bw(base_size = base_size) +
-      ggplot2::theme(panel.grid = ggplot2::element_blank(),
-                     axis.text = ggplot2::element_blank(),
-                     axis.ticks = ggplot2::element_blank(),
-                     aspect.ratio = 1,
-                     strip.background = ggplot2::element_rect(colour = NA,fill = stripCol))
+      ggplot2::theme(
+        panel.grid = ggplot2::element_blank(),
+        axis.text = ggplot2::element_blank(),
+        axis.ticks = ggplot2::element_blank(),
+        aspect.ratio = 1,
+        strip.background = ggplot2::element_rect(colour = NA, fill = stripCol)
+      )
     return(p2)
-  }else if(themebg == 'default'){
+  } else if (themebg == "default") {
     return(p1)
   }
 }

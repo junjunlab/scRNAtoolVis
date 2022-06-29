@@ -55,22 +55,30 @@ test <- system.file("extdata", "seuratTest.RDS", package = "scRNAtoolVis")
 tmp <- readRDS(test)
 
 # umap
-FeatureCornerAxes(object = tmp,reduction = 'umap',
-                  groupFacet = 'orig.ident',
-                  relLength = 0.5,relDist = 0.2,
-                  features = c("Actb","Ythdc1", "Ythdf2"))
+FeatureCornerAxes(
+  object = tmp, reduction = "umap",
+  groupFacet = "orig.ident",
+  relLength = 0.5, relDist = 0.2,
+  features = c("Actb", "Ythdc1", "Ythdf2")
+)
 
 # one axes
-FeatureCornerAxes(object = tmp,reduction = 'umap',
-                  groupFacet = 'orig.ident',
-                  features = c("Actb","Ythdc1", "Ythdf2"),
-                  relLength = 0.5,relDist = 0.2,
-                  axes = 'one',
-                  lineTextcol = 'grey50')
+FeatureCornerAxes(
+  object = tmp, reduction = "umap",
+  groupFacet = "orig.ident",
+  features = c("Actb", "Ythdc1", "Ythdf2"),
+  relLength = 0.5, relDist = 0.2,
+  axes = "one",
+  lineTextcol = "grey50"
+)
 
 # tsne
-FeatureCornerAxes(object = tmp,reduction = 'tsne',
-                  groupFacet = 'orig.ident',
-                  relLength = 0.5,relDist = 0.2,
-                  features = c("Actb","Ythdc1", "Ythdf2"))
+FeatureCornerAxes(
+  object = tmp, reduction = "tsne",
+  groupFacet = "orig.ident",
+  relLength = 0.5, relDist = 0.2,
+  features = c("Actb", "Ythdc1", "Ythdf2")
+)
+
+
 }

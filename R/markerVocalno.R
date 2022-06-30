@@ -115,7 +115,7 @@ markerVocalno <- function(markers = NULL,
       axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
       strip.background = ggplot2::element_rect(color = facetColor, fill = facetFill)
     ) +
-    ggplot2::xlab(expression(Delta ~ 'Percentage Diffrence')) +
+    ggplot2::xlab(expression(Delta ~ 'Percentage Difference')) +
     ggplot2::ylab(ylab) +
     ggplot2::facet_wrap(~ cluster, nrow = nrow, scales = 'fixed')
 }

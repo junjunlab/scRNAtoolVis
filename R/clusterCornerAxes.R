@@ -183,7 +183,7 @@ clusterCornerAxes <- function(object = NULL,
   # plot
   p <- ggplot2::ggplot(
     pc12,
-    ggplot2::aes(x = pc12[, 1], y = pc12[, 2])
+    ggplot2::aes_string(x = colnames(pc12)[1], y = colnames(pc12)[2])
   ) +
     ggplot2::geom_point(ggplot2::aes_string(color = clusterCol),
       size = pSize

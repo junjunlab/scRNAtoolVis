@@ -6,6 +6,7 @@
 #' @param groupFacet "string",give the column name in seurat metadata to facet plot.
 #' @param relLength "num",the corner axis line relative length to plot axis(0-1).
 #' @param relDist "num",the relative distance of corner axis label to axis.
+#' @param aspect.ratio "num", plot width and height ratio, defaults NULL.
 #' @param low "string",point color with low expression.
 #' @param high "string",point color with high expression.
 #' @param axes "string",show multiple corner axis or only one (mul/one),defaults "mul".
@@ -64,6 +65,7 @@ FeatureCornerAxes <- function(object = NULL,
                               groupFacet = "orig.ident",
                               relLength = 0.25,
                               relDist = 0.1,
+                              aspect.ratio = NULL,
                               low = "lightgrey",
                               high = "red",
                               axes = "mul",
@@ -185,7 +187,7 @@ FeatureCornerAxes <- function(object = NULL,
       ggplot2::labs(x = "", y = x) +
       ggplot2::theme(
         strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
-        aspect.ratio = 1,
+        aspect.ratio = aspect.ratio,
         legend.position = legendPos,
         plot.title = ggplot2::element_text(hjust = 0.5),
         axis.line = ggplot2::element_blank(),

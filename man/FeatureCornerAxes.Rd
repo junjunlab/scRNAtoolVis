@@ -16,6 +16,8 @@
 
 \item{relDist}{"num",the relative distance of corner axis label to axis.}
 
+\item{aspect.ratio}{"num", plot width and height ratio, defaults NULL.}
+
 \item{low}{"string",point color with low expression.}
 
 \item{high}{"string",point color with high expression.}

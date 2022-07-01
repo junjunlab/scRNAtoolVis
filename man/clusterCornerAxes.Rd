@@ -37,9 +37,29 @@
 \item{base_size}{"num", theme base size, defaults is 14.}
 
 \item{themebg}{Another theme style, defaults is 'default', or 'bwCorner'.}
+
+\item{addCircle}{Logic, whether add circle on clusters, default is 'FALSE'.}
+
+\item{cicAlpha}{"num", circle fill color alpha, default is 0.1,}
+
+\item{cicLineSize}{"num", circle line size, default is 1.}
+
+\item{cicLineColor}{"num", circle line color, default is 'grey50'.}
+
+\item{cicLineLty}{"num", circle line type, default is 'dashed'.}
+
+\item{nbin}{"num", number of points used to shape the hull, default 100.}
+
+\item{nsm}{"num", number of points used to perform convolution, should less than nbin, default 10.}
+
+\item{addsm}{"num", number of additional times of convolution performed, default 1.}
+
+\item{sfac}{"num", quantile of each sector, used to determine the edge of the hull, should less than 1, default 1.}
+
+\item{qval}{"num", expansion size factor, larger value means bigger hull, default 1.5.}
 }
 \value{
-Return a ggplot.
+Return a ggplot object.
 }
 \description{
 Add corner axes on seurat UMAP/tSNE cluster figures

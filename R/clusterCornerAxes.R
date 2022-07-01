@@ -17,7 +17,17 @@
 #' @param cornerTextSize "num", the corner label text size, defaults is 5.
 #' @param base_size "num", theme base size, defaults is 14.
 #' @param themebg Another theme style, defaults is 'default', or 'bwCorner'.
-#' @return Return a ggplot.
+#' @param addCircle Logic, whether add circle on clusters, default is 'FALSE'.
+#' @param cicAlpha "num", circle fill color alpha, default is 0.1,
+#' @param cicLineSize "num", circle line size, default is 1.
+#' @param cicLineColor "num", circle line color, default is 'grey50'.
+#' @param cicLineLty "num", circle line type, default is 'dashed'.
+#' @param nbin "num", number of points used to shape the hull, default 100.
+#' @param nsm "num", number of points used to perform convolution, should less than nbin, default 10.
+#' @param addsm "num", number of additional times of convolution performed, default 1.
+#' @param sfac "num", quantile of each sector, used to determine the edge of the hull, should less than 1, default 1.
+#' @param qval "num", expansion size factor, larger value means bigger hull, default 1.5.
+#' @return Return a ggplot object.
 #' @export
 #' @examples
 #' test <- system.file("extdata", "seuratTest.RDS", package = "scRNAtoolVis")
@@ -86,7 +96,17 @@ clusterCornerAxes <- function(object = NULL,
                               arrowType = "closed",
                               cornerTextSize = 5,
                               base_size = 14,
-                              themebg = "default") {
+                              themebg = "default",
+                              addCircle = FALSE,
+                              cicAlpha = 0.1,
+                              cicLineSize = 1,
+                              cicLineColor = 'grey50',
+                              cicLineLty = 'dashed',
+                              nbin = 100,
+                              nsm = 10,
+                              addsm = 1,
+                              qval = 1,
+                              sfac = 1.5) {
   # make PC data
   reduc <-
     data.frame(Seurat::Embeddings(object, reduction = reduction))
@@ -202,11 +222,31 @@ clusterCornerAxes <- function(object = NULL,
       size = cornerTextSize,
     )
 
+  # add circle line
+  if(addCircle == FALSE){
+    p0 <- p
+    # return(p0)
+  }else{
+    p0 <- p +
+      ggunchull::stat_unchull(ggplot2::aes_string(fill = clusterCol),
+                              alpha = cicAlpha,
+                              size = cicLineSize,
+                              color = cicLineColor,
+                              lty = cicLineLty,
+                              show.legend = F,
+                              nbin = nbin,
+                              nsm = nsm,
+                              addsm = addsm,
+                              sfac = sfac,
+                              qval = qval)
+    # return(p3)
+  }
+
   # facet plot
   if (noSplit == TRUE) {
-    p1 <- p
+    p1 <- p0
   } else {
-    p1 <- p + ggplot2::facet_wrap(~ get(groupFacet), nrow = nrow)
+    p1 <- p0 + ggplot2::facet_wrap(facets = groupFacet, nrow = nrow)
   }
 
   # theme style
@@ -220,8 +260,9 @@ clusterCornerAxes <- function(object = NULL,
         aspect.ratio = 1,
         strip.background = ggplot2::element_rect(colour = NA, fill = stripCol)
       )
-    return(p2)
   } else if (themebg == "default") {
-    return(p1)
+    p2 <- p1
   }
+
+  return(p2)
 }

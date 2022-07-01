@@ -14,6 +14,8 @@
 
 \item{pSize}{"num", point size.}
 
+\item{aspect.ratio}{"num", plot width and height ratio, defaults NULL.}
+
 \item{noSplit}{'logic', whether to split/facet the plot, defaults "TRUE".}
 
 \item{nrow}{"num", rows to plot when noSplit = FALSE.}
@@ -32,7 +34,7 @@
 
 \item{arrowType}{"string", arrow type (open/closed), defaults "closed".}
 
-\item{cornerTextSize}{"num", the corner label text size, defaults is 5.}
+\item{cornerTextSize}{"num", the corner label text size, defaults is 3.}
 
 \item{base_size}{"num", theme base size, defaults is 14.}
 

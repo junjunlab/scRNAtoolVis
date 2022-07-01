@@ -5,6 +5,7 @@
 #' @param groupFacet "string", give the column name in seurat metadata to facet plot.
 #' @param clusterCol "string", the point color to group by,cluster name, defaults "seurat_clusters".
 #' @param pSize "num", point size.
+#' @param aspect.ratio "num", plot width and height ratio, defaults NULL.
 #' @param noSplit 'logic', whether to split/facet the plot, defaults "TRUE".
 #' @param nrow "num", rows to plot when noSplit = FALSE.
 #' @param relLength 'num', the corner axis line relative length to plot axis(0-1).
@@ -14,7 +15,7 @@
 #' @param lineTextcol "string", corner line and label color, defaults "black".
 #' @param stripCol "string", facet balckground color, defaults "white".
 #' @param arrowType "string", arrow type (open/closed), defaults "closed".
-#' @param cornerTextSize "num", the corner label text size, defaults is 5.
+#' @param cornerTextSize "num", the corner label text size, defaults is 3.
 #' @param base_size "num", theme base size, defaults is 14.
 #' @param themebg Another theme style, defaults is 'default', or 'bwCorner'.
 #' @param addCircle Logic, whether add circle on clusters, default is 'FALSE'.
@@ -85,6 +86,7 @@ clusterCornerAxes <- function(object = NULL,
                               groupFacet = groupFacet,
                               clusterCol = "seurat_clusters",
                               pSize = 1,
+                              aspect.ratio = NULL,
                               noSplit = TRUE,
                               nrow = 1,
                               relLength = 0.25,
@@ -94,7 +96,7 @@ clusterCornerAxes <- function(object = NULL,
                               lineTextcol = "black",
                               stripCol = "white",
                               arrowType = "closed",
-                              cornerTextSize = 5,
+                              cornerTextSize = 3,
                               base_size = 14,
                               themebg = "default",
                               addCircle = FALSE,
@@ -192,7 +194,7 @@ clusterCornerAxes <- function(object = NULL,
     ggplot2::labs(x = "", y = "") +
     ggplot2::theme(
       strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
-      aspect.ratio = 1,
+      aspect.ratio = aspect.ratio,
       legend.position = legendPos,
       plot.title = ggplot2::element_text(hjust = 0.5),
       axis.line = ggplot2::element_blank(),

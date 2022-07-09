@@ -18,7 +18,10 @@ AverageHeatmap(
   annoColType = "light",
   annoColTypeAlpha = 0,
   row_title = "Cluster top Marker genes",
+  clusterAnnoName = TRUE,
+  showRowNames = TRUE,
   row_names_side = "left",
+  markGenes = NULL,
   border = FALSE,
   fontsize = 10,
   column_names_rot = 45
@@ -51,7 +54,13 @@ AverageHeatmap(
 
 \item{row_title}{Heatmap row title. Default is "Cluster top Marker genes".}
 
+\item{clusterAnnoName}{Whether to add clsuetr column annotation name. Default is "TRUE".}
+
+\item{showRowNames}{whether to show rownames. Default is "TRUE".}
+
 \item{row_names_side}{Heatmap gene name side. Default is "left".}
+
+\item{markGenes}{Provide your tartget genes to mark on the plot. Default is "NULL".}
 
 \item{border}{Whether to shOw heatmap border. Default is "FALSE".}
 
@@ -86,4 +95,7 @@ AverageHeatmap(
   htCol = c("#339933", "#FFCC00", "#FF0033")
 )
 
+}
+\author{
+Junjun Lao
 }

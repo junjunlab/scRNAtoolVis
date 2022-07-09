@@ -10,39 +10,45 @@
 
 \item{features}{"string",the gene you want to plot.}
 
-\item{groupFacet}{"string",give the column name in seurat metadata to facet plot.}
+\item{groupFacet}{"string",give the column name in seurat metadata to facet plot, if it is "NULL", facet plot only by gene.}
 
 \item{relLength}{"num",the corner axis line relative length to plot axis(0-1).}
 
 \item{relDist}{"num",the relative distance of corner axis label to axis.}
 
-\item{aspect.ratio}{"num", plot width and height ratio, defaults NULL.}
+\item{aspect.ratio}{"num", plot width and height ratio, default NULL.}
 
 \item{low}{"string",point color with low expression.}
 
 \item{high}{"string",point color with high expression.}
 
-\item{axes}{"string",show multiple corner axis or only one (mul/one),defaults "mul".}
+\item{axes}{"string",show multiple corner axis or only one (mul/one), default "mul".}
 
-\item{legendPos}{"string",legend position same as ggplot theme function,defaults "right".}
+\item{legendPos}{"string",legend position same as ggplot theme function, default "right".}
 
-\item{RowSample}{"num",rows for groupFacet.}
-
-\item{ColGene}{"num",cols for features.}
-
-\item{stripCol}{"string",facet balckground color,defaults "white".}
+\item{stripCol}{"string",facet balckground color, defaults "white".}
 
 \item{pSize}{"num",point size.}
 
-\item{arrowType}{"string",arrow type (open/closed),defaults "closed".}
+\item{arrowType}{"string",arrow type (open/closed), default "closed".}
 
-\item{lineTextcol}{"string",facet balckground color,defaults "white".}
+\item{lineTextcol}{"string",facet balckground color, default "white".}
 
-\item{cornerTextSize}{"num", the corner label text size, defaults is 5.}
+\item{cornerTextSize}{"num", the corner label text size, default is 5.}
 
-\item{base_size}{"num", theme base size, defaults is 14.}
+\item{base_size}{"num", theme base size, default is 14.}
 
-\item{themebg}{Another theme style, defaults is 'default', or 'bwCorner'.}
+\item{themebg}{Another theme style, default is 'default', or 'bwCorner'.}
+
+\item{show.legend}{Whether show legend, default "TRUE".}
+
+\item{cornerVariable}{Which group  corner axis to be added when "axes" set to "one", default is the first group.}
+
+\item{nLayout}{= NULL Similar to the ncol/nrow for the layout, default is the gene numbers.}
+
+\item{minExp}{Minimum expression value defined, default is NULL.}
+
+\item{maxExp}{Maxmum expression value defined, default is NULL.}
 }
 \value{
 Return a ggplot.
@@ -83,4 +89,7 @@ FeatureCornerAxes(
 )
 
 
+}
+\author{
+Junjun Lao
 }

@@ -1,4 +1,5 @@
 #' @name AverageHeatmap
+#' @author Junjun Lao
 #' @title Plot averaged gene expression cross cluster cells
 #' @param object object seurat object.
 #' @param markerGene Your marker genes.
@@ -17,6 +18,9 @@
 #' @param border Whether to shOw heatmap border. Default is "FALSE".
 #' @param fontsize Heatmap gene name fontsize. Default is 10.
 #' @param column_names_rot Cluster name rotation. Default is 45.
+#' @param showRowNames whether to show rownames. Default is "TRUE".
+#' @param markGenes Provide your tartget genes to mark on the plot. Default is "NULL".
+#' @param clusterAnnoName Whether to add clsuetr column annotation name. Default is "TRUE".
 #'
 #' @return Return a plot.
 #' @export
@@ -56,16 +60,19 @@ AverageHeatmap <- function(object = NULL,
                            annoColType = "light",
                            annoColTypeAlpha = 0,
                            row_title = "Cluster top Marker genes",
+                           clusterAnnoName = TRUE,
+                           showRowNames = TRUE,
                            row_names_side = "left",
+                           markGenes = NULL,
                            border = FALSE,
                            fontsize = 10,
                            column_names_rot = 45) {
   # get cells mean gene expression
   mean_gene_exp <- as.matrix(data.frame(Seurat::AverageExpression(object,
-    features = markerGene,
-    group.by = group.by,
-    assays = assays,
-    slot = slot
+                                                                  features = markerGene,
+                                                                  group.by = group.by,
+                                                                  assays = assays,
+                                                                  slot = slot
   )))
 
   # add colnames
@@ -90,8 +97,8 @@ AverageHeatmap <- function(object = NULL,
   if (annoCol == FALSE) {
     set.seed(colseed)
     anno_col <- circlize::rand_color(ncol(htdf),
-      luminosity = annoColType,
-      transparency = annoColTypeAlpha
+                                     luminosity = annoColType,
+                                     transparency = annoColTypeAlpha
     )
     print(c("Your cluster annotation color is:", anno_col))
   } else if (annoCol == TRUE) {
@@ -106,22 +113,45 @@ AverageHeatmap <- function(object = NULL,
   column_ha <- ComplexHeatmap::HeatmapAnnotation(
     cluster = colnames(htdf),
     show_legend = F,
+    show_annotation_name = clusterAnnoName,
     col = list(cluster = anno_col)
   )
 
+  # whether mark your genes on plot
+  if(!is.null(markGenes)){
+    # all genes
+    rowGene <- rownames(htdf)
+
+    # tartget gene
+    annoGene <- markGenes
+
+    # get target gene index
+    index <- match(annoGene,rowGene)
+
+    # some genes annotation
+    geneMark = ComplexHeatmap::rowAnnotation(gene = ComplexHeatmap::anno_mark(at = index,
+                                                                              labels = annoGene))
+
+    right_annotation = geneMark
+  }else{
+    right_annotation = NULL
+  }
+
   # plot
   ComplexHeatmap::Heatmap(htdf,
-    name = "Z-score",
-    cluster_columns = F,
-    cluster_rows = F,
-    row_title = row_title,
-    # column_title = "Clusters",
-    row_names_gp = grid::gpar(fontface = "italic", fontsize = fontsize),
-    row_names_side = row_names_side,
-    border = border,
-    column_names_side = "top",
-    column_names_rot = column_names_rot,
-    top_annotation = column_ha,
-    col = col_fun
+                          name = "Z-score",
+                          cluster_columns = F,
+                          cluster_rows = F,
+                          row_title = row_title,
+                          # column_title = "Clusters",
+                          right_annotation = right_annotation,
+                          show_row_names = showRowNames,
+                          row_names_gp = grid::gpar(fontface = "italic", fontsize = fontsize),
+                          row_names_side = row_names_side,
+                          border = border,
+                          column_names_side = "top",
+                          column_names_rot = column_names_rot,
+                          top_annotation = column_ha,
+                          col = col_fun
   )
 }

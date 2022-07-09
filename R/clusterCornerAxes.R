@@ -1,23 +1,25 @@
 #' @name clusterCornerAxes
+#' @author Junjun Lao
 #' @title Add corner axes on seurat UMAP/tSNE cluster figures
 #' @param object seurat object.
 #' @param reduction "string", reduction type (umap/tsne).
 #' @param groupFacet "string", give the column name in seurat metadata to facet plot.
-#' @param clusterCol "string", the point color to group by,cluster name, defaults "seurat_clusters".
+#' @param clusterCol "string", the point color to group by,cluster name, default "seurat_clusters".
 #' @param pSize "num", point size.
-#' @param aspect.ratio "num", plot width and height ratio, defaults NULL.
-#' @param noSplit 'logic', whether to split/facet the plot, defaults "TRUE".
+#' @param aspect.ratio "num", plot width and height ratio, default NULL.
+#' @param noSplit 'logic', whether to split/facet the plot, default "TRUE".
 #' @param nrow "num", rows to plot when noSplit = FALSE.
 #' @param relLength 'num', the corner axis line relative length to plot axis(0-1).
 #' @param relDist "num" ,the relative distance of corner axis label to axis.
-#' @param axes "string", show multiple corner axis or only one (mul/one), defaults "mul".
-#' @param legendPos "string", legend position same as ggplot theme function, defaults "right".
-#' @param lineTextcol "string", corner line and label color, defaults "black".
-#' @param stripCol "string", facet balckground color, defaults "white".
-#' @param arrowType "string", arrow type (open/closed), defaults "closed".
-#' @param cornerTextSize "num", the corner label text size, defaults is 3.
-#' @param base_size "num", theme base size, defaults is 14.
-#' @param themebg Another theme style, defaults is 'default', or 'bwCorner'.
+#' @param axes "string", show multiple corner axis or only one (mul/one), default "mul".
+#' @param legendPos "string", legend position same as ggplot theme function, default "right".
+#' @param keySize The legned point size, default is 5.
+#' @param lineTextcol "string", corner line and label color, default "black".
+#' @param stripCol "string", facet balckground color, default "white".
+#' @param arrowType "string", arrow type (open/closed), default "closed".
+#' @param cornerTextSize "num", the corner label text size, default is 3.
+#' @param base_size "num", theme base size, default is 14.
+#' @param themebg Another theme style, default is 'default', or 'bwCorner'.
 #' @param addCircle Logic, whether add circle on clusters, default is 'FALSE'.
 #' @param cicAlpha "num", circle fill color alpha, default is 0.1,
 #' @param cicLineSize "num", circle line size, default is 1.
@@ -28,6 +30,11 @@
 #' @param addsm "num", number of additional times of convolution performed, default 1.
 #' @param sfac "num", quantile of each sector, used to determine the edge of the hull, should less than 1, default 1.
 #' @param qval "num", expansion size factor, larger value means bigger hull, default 1.5.
+#'
+#' @param cellLabel Whether to label cell type on plot, default is FALSE.
+#' @param cellLabelSize Cell type label size, default is 6.
+#' @param cellLabelColor Cell type label color, default is "balck".
+#'
 #' @return Return a ggplot object.
 #' @export
 #' @examples
@@ -93,6 +100,10 @@ clusterCornerAxes <- function(object = NULL,
                               relDist = 0.1,
                               axes = "mul",
                               legendPos = "right",
+                              keySize = 5,
+                              cellLabel = FALSE,
+                              cellLabelSize = 6,
+                              cellLabelColor = 'black',
                               lineTextcol = "black",
                               stripCol = "white",
                               arrowType = "closed",
@@ -118,6 +129,15 @@ clusterCornerAxes <- function(object = NULL,
 
   # combine
   pc12 <- cbind(reduc, meta)
+
+  #######################################
+  # text data
+  namePos <- pc12 %>%
+    dplyr::group_by(get(clusterCol)) %>%
+    dplyr::summarise(posMedia1 = stats::median(get(colnames(pc12)[1])),
+                    posMedia2 = stats::median(get(colnames(pc12)[2])))
+
+  #######################################
 
   # data range
   range <- floor(min(min(pc12[, 1]), min(pc12[, 2])))
@@ -182,54 +202,54 @@ clusterCornerAxes <- function(object = NULL,
     print("Please give correct args(mul or one)!")
   }
 
+  ######################################################
   # plot
-  p <- ggplot2::ggplot(
-    pc12,
-    ggplot2::aes_string(x = colnames(pc12)[1], y = colnames(pc12)[2])
-  ) +
+  p <- ggplot2::ggplot(pc12,
+                       ggplot2::aes_string(x = colnames(pc12)[1], y = colnames(pc12)[2])) +
     ggplot2::geom_point(ggplot2::aes_string(color = clusterCol),
-      size = pSize
-    ) +
+                        size = pSize) +
     ggplot2::theme_classic(base_size = base_size) +
     ggplot2::labs(x = "", y = "") +
-    ggplot2::theme(
-      strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
-      aspect.ratio = aspect.ratio,
-      legend.position = legendPos,
-      plot.title = ggplot2::element_text(hjust = 0.5),
-      axis.line = ggplot2::element_blank(),
-      axis.ticks = ggplot2::element_blank(),
-      axis.text = ggplot2::element_blank()
-    ) +
-    ggplot2::geom_line(
-      data = axes,
-      ggplot2::aes(x = x1, y = y1, group = linegrou),
-      color = lineTextcol,
-      arrow = ggplot2::arrow(
-        length = ggplot2::unit(0.1, "inches"),
-        ends = "last",
-        type = arrowType
-      )
-    ) +
-    ggplot2::geom_text(
-      data = label,
-      color = lineTextcol,
-      ggplot2::aes(
-        x = x1,
-        y = y1,
-        angle = angle,
-        label = lab
-      ),
-      fontface = "italic",
-      size = cornerTextSize,
-    )
+    ggplot2::theme(strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
+                   aspect.ratio = aspect.ratio,
+                   legend.position = legendPos,
+                   plot.title = ggplot2::element_text(hjust = 0.5),
+                   axis.line = ggplot2::element_blank(),
+                   axis.ticks = ggplot2::element_blank(),
+                   axis.text = ggplot2::element_blank()) +
+    ggplot2::geom_line(data = axes,
+                       ggplot2::aes(x = x1, y = y1, group = linegrou),
+                       color = lineTextcol,
+                       arrow = ggplot2::arrow(length = ggplot2::unit(0.1, "inches"),
+                                              ends = "last",
+                                              type = arrowType)) +
+    ggplot2::geom_text(data = label,
+                       ggplot2::aes(x = x1,y = y1,angle = angle,label = lab),
+                       color = lineTextcol,
+                       fontface = "italic",
+                       size = cornerTextSize) +
+    ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(size = keySize)))
 
+  ######################################################
+  # add text label
+  if(cellLabel == FALSE){
+    plabel <- p
+  }else{
+    plabel <- p +
+      ggrepel::geom_text_repel(data = namePos,
+                               ggplot2::aes_string(x = "posMedia1",y = "posMedia2",label = clusterCol),
+                               show.legend = F,
+                               size = cellLabelSize,
+                               color = cellLabelColor)
+  }
+
+  ######################################################
   # add circle line
   if(addCircle == FALSE){
-    p0 <- p
+    p0 <- plabel
     # return(p0)
   }else{
-    p0 <- p +
+    p0 <- plabel +
       ggunchull::stat_unchull(ggplot2::aes_string(fill = clusterCol),
                               alpha = cicAlpha,
                               size = cicLineSize,
@@ -241,9 +261,9 @@ clusterCornerAxes <- function(object = NULL,
                               addsm = addsm,
                               sfac = sfac,
                               qval = qval)
-    # return(p3)
   }
 
+  ######################################################
   # facet plot
   if (noSplit == TRUE) {
     p1 <- p0
@@ -251,17 +271,16 @@ clusterCornerAxes <- function(object = NULL,
     p1 <- p0 + ggplot2::facet_wrap(facets = groupFacet, nrow = nrow)
   }
 
+  ######################################################
   # theme style
   if (themebg == "bwCorner") {
     p2 <- p1 +
       ggplot2::theme_bw(base_size = base_size) +
-      ggplot2::theme(
-        panel.grid = ggplot2::element_blank(),
-        axis.text = ggplot2::element_blank(),
-        axis.ticks = ggplot2::element_blank(),
-        aspect.ratio = 1,
-        strip.background = ggplot2::element_rect(colour = NA, fill = stripCol)
-      )
+      ggplot2::theme(panel.grid = ggplot2::element_blank(),
+                     axis.text = ggplot2::element_blank(),
+                     axis.ticks = ggplot2::element_blank(),
+                     aspect.ratio = 1,
+                     strip.background = ggplot2::element_rect(colour = NA, fill = stripCol))
   } else if (themebg == "default") {
     p2 <- p1
   }

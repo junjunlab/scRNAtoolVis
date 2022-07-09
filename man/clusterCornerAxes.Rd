@@ -10,13 +10,13 @@
 
 \item{groupFacet}{"string", give the column name in seurat metadata to facet plot.}
 
-\item{clusterCol}{"string", the point color to group by,cluster name, defaults "seurat_clusters".}
+\item{clusterCol}{"string", the point color to group by,cluster name, default "seurat_clusters".}
 
 \item{pSize}{"num", point size.}
 
-\item{aspect.ratio}{"num", plot width and height ratio, defaults NULL.}
+\item{aspect.ratio}{"num", plot width and height ratio, default NULL.}
 
-\item{noSplit}{'logic', whether to split/facet the plot, defaults "TRUE".}
+\item{noSplit}{'logic', whether to split/facet the plot, default "TRUE".}
 
 \item{nrow}{"num", rows to plot when noSplit = FALSE.}
 
@@ -24,21 +24,23 @@
 
 \item{relDist}{"num" ,the relative distance of corner axis label to axis.}
 
-\item{axes}{"string", show multiple corner axis or only one (mul/one), defaults "mul".}
+\item{axes}{"string", show multiple corner axis or only one (mul/one), default "mul".}
 
-\item{legendPos}{"string", legend position same as ggplot theme function, defaults "right".}
+\item{legendPos}{"string", legend position same as ggplot theme function, default "right".}
 
-\item{lineTextcol}{"string", corner line and label color, defaults "black".}
+\item{keySize}{The legned point size, default is 5.}
 
-\item{stripCol}{"string", facet balckground color, defaults "white".}
+\item{lineTextcol}{"string", corner line and label color, default "black".}
 
-\item{arrowType}{"string", arrow type (open/closed), defaults "closed".}
+\item{stripCol}{"string", facet balckground color, default "white".}
 
-\item{cornerTextSize}{"num", the corner label text size, defaults is 3.}
+\item{arrowType}{"string", arrow type (open/closed), default "closed".}
 
-\item{base_size}{"num", theme base size, defaults is 14.}
+\item{cornerTextSize}{"num", the corner label text size, default is 3.}
 
-\item{themebg}{Another theme style, defaults is 'default', or 'bwCorner'.}
+\item{base_size}{"num", theme base size, default is 14.}
+
+\item{themebg}{Another theme style, default is 'default', or 'bwCorner'.}
 
 \item{addCircle}{Logic, whether add circle on clusters, default is 'FALSE'.}
 
@@ -59,6 +61,12 @@
 \item{sfac}{"num", quantile of each sector, used to determine the edge of the hull, should less than 1, default 1.}
 
 \item{qval}{"num", expansion size factor, larger value means bigger hull, default 1.5.}
+
+\item{cellLabel}{Whether to label cell type on plot, default is FALSE.}
+
+\item{cellLabelSize}{Cell type label size, default is 6.}
+
+\item{cellLabelColor}{Cell type label color, default is "balck".}
 }
 \value{
 Return a ggplot object.
@@ -113,4 +121,7 @@ clusterCornerAxes(
   relLength = 0.5
 )
 
+}
+\author{
+Junjun Lao
 }

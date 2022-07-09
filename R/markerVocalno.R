@@ -1,4 +1,5 @@
 #' @name markerVocalno
+#' @author Junjun Lao
 #' @title Marker genes vocalno plot
 #' @param markers Dataframe marker genes from findAllmarkers function from seurat.
 #' @param topn  Numbers top genes to label, defaults is 5.

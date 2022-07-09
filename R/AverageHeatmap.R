@@ -130,7 +130,9 @@ AverageHeatmap <- function(object = NULL,
 
     # some genes annotation
     geneMark = ComplexHeatmap::rowAnnotation(gene = ComplexHeatmap::anno_mark(at = index,
-                                                                              labels = annoGene))
+                                                                              labels = annoGene,
+                                                                              labels_gp = grid::gpar(fontface = 'italic',
+                                                                                                     fontsize = fontsize)))
 
     right_annotation = geneMark
   }else{
@@ -146,7 +148,8 @@ AverageHeatmap <- function(object = NULL,
                           # column_title = "Clusters",
                           right_annotation = right_annotation,
                           show_row_names = showRowNames,
-                          row_names_gp = grid::gpar(fontface = "italic", fontsize = fontsize),
+                          row_names_gp = grid::gpar(fontface = "italic",
+                                                    fontsize = fontsize),
                           row_names_side = row_names_side,
                           border = border,
                           column_names_side = "top",

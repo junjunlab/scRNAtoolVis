@@ -67,6 +67,8 @@
 \item{cellLabelSize}{Cell type label size, default is 6.}
 
 \item{cellLabelColor}{Cell type label color, default is "balck".}
+
+\item{show.legend}{Wheher show legend, default is TRUE.}
 }
 \value{
 Return a ggplot object.

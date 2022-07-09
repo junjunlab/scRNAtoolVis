@@ -34,6 +34,7 @@
 #' @param cellLabel Whether to label cell type on plot, default is FALSE.
 #' @param cellLabelSize Cell type label size, default is 6.
 #' @param cellLabelColor Cell type label color, default is "balck".
+#' @param show.legend Wheher show legend, default is TRUE.
 #'
 #' @return Return a ggplot object.
 #' @export
@@ -85,7 +86,7 @@
 #' )
 #'
 # define viriables
-globalVariables(c("x1", "y1", "linegrou", "angle", "lab"))
+globalVariables(c("x1", "y1", "linegrou", "angle", "lab",".data"))
 
 # define function
 clusterCornerAxes <- function(object = NULL,
@@ -99,6 +100,7 @@ clusterCornerAxes <- function(object = NULL,
                               relLength = 0.25,
                               relDist = 0.1,
                               axes = "mul",
+                              show.legend = TRUE,
                               legendPos = "right",
                               keySize = 5,
                               cellLabel = FALSE,
@@ -133,9 +135,9 @@ clusterCornerAxes <- function(object = NULL,
   #######################################
   # text data
   namePos <- pc12 %>%
-    dplyr::group_by(get(clusterCol)) %>%
+    dplyr::group_by(.data[[clusterCol]]) %>%
     dplyr::summarise(posMedia1 = stats::median(get(colnames(pc12)[1])),
-                    posMedia2 = stats::median(get(colnames(pc12)[2])))
+                     posMedia2 = stats::median(get(colnames(pc12)[2])))
 
   #######################################
 
@@ -207,7 +209,8 @@ clusterCornerAxes <- function(object = NULL,
   p <- ggplot2::ggplot(pc12,
                        ggplot2::aes_string(x = colnames(pc12)[1], y = colnames(pc12)[2])) +
     ggplot2::geom_point(ggplot2::aes_string(color = clusterCol),
-                        size = pSize) +
+                        size = pSize,
+                        show.legend = show.legend) +
     ggplot2::theme_classic(base_size = base_size) +
     ggplot2::labs(x = "", y = "") +
     ggplot2::theme(strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),

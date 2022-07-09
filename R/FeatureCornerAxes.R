@@ -197,7 +197,8 @@ FeatureCornerAxes <- function(object = NULL,
                         show.legend = show.legend) +
     ggplot2::theme_classic(base_size = base_size) +
     ggplot2::scale_color_gradient(name = "",low = low,high = high,
-                                  limits = c(minexp,maxexp)) +
+                                  limits = c(minexp,maxexp),
+                                  na.value = high) +
     ggplot2::labs(x = "", y = "") +
     ggplot2::geom_line(data = axes,
                        ggplot2::aes(x = x1, y = y1, group = linegrou),

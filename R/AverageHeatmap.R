@@ -21,7 +21,8 @@
 #' @param showRowNames whether to show rownames. Default is "TRUE".
 #' @param markGenes Provide your tartget genes to mark on the plot. Default is "NULL".
 #' @param clusterAnnoName Whether to add clsuetr column annotation name. Default is "TRUE".
-#'
+#' @param width The heatmap body width. Default is "NULL".
+#' @param height The heatmap body height. Default is "NULL".
 #' @return Return a plot.
 #' @export
 #'
@@ -46,7 +47,8 @@
 #'   htCol = c("#339933", "#FFCC00", "#FF0033")
 #' )
 #'
-# define viriables
+
+# define function
 AverageHeatmap <- function(object = NULL,
                            markerGene = NULL,
                            group.by = "ident",
@@ -66,7 +68,9 @@ AverageHeatmap <- function(object = NULL,
                            markGenes = NULL,
                            border = FALSE,
                            fontsize = 10,
-                           column_names_rot = 45) {
+                           column_names_rot = 45,
+                           width = NULL,
+                           height = NULL) {
   # get cells mean gene expression
   mean_gene_exp <- as.matrix(data.frame(Seurat::AverageExpression(object,
                                                                   features = markerGene,
@@ -155,6 +159,8 @@ AverageHeatmap <- function(object = NULL,
                           column_names_side = "top",
                           column_names_rot = column_names_rot,
                           top_annotation = column_ha,
-                          col = col_fun
+                          col = col_fun,
+                          width = NULL,
+                          height = NULL
   )
 }

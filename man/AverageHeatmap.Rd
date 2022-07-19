@@ -24,7 +24,9 @@ AverageHeatmap(
   markGenes = NULL,
   border = FALSE,
   fontsize = 10,
-  column_names_rot = 45
+  column_names_rot = 45,
+  width = NULL,
+  height = NULL
 )
 }
 \arguments{
@@ -67,6 +69,10 @@ AverageHeatmap(
 \item{fontsize}{Heatmap gene name fontsize. Default is 10.}
 
 \item{column_names_rot}{Cluster name rotation. Default is 45.}
+
+\item{width}{The heatmap body width. Default is "NULL".}
+
+\item{height}{The heatmap body height. Default is "NULL".}
 }
 \value{
 Return a plot.

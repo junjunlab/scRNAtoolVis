@@ -2,7 +2,7 @@ Package: scRNAtoolVis
 Title: Making scRNA-seq visualization more easier and better
 Version: 0.0.3
 Authors@R: 
-    person("JunJun", "Lao", , "3219030654@stu.cpu.edu.cn", role = c("aut", "cre"),
+    person("Junjun", "Lao", , "3219030654@stu.cpu.edu.cn", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Some useful functions to visualize scRNA-seq figures.
 License: MIT + file LICENSE

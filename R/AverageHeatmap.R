@@ -143,24 +143,45 @@ AverageHeatmap <- function(object = NULL,
     right_annotation = NULL
   }
 
-  # plot
-  ComplexHeatmap::Heatmap(htdf,
-                          name = "Z-score",
-                          cluster_columns = F,
-                          cluster_rows = F,
-                          row_title = row_title,
-                          # column_title = "Clusters",
-                          right_annotation = right_annotation,
-                          show_row_names = showRowNames,
-                          row_names_gp = grid::gpar(fontface = "italic",
-                                                    fontsize = fontsize),
-                          row_names_side = row_names_side,
-                          border = border,
-                          column_names_side = "top",
-                          column_names_rot = column_names_rot,
-                          top_annotation = column_ha,
-                          col = col_fun,
-                          width = NULL,
-                          height = NULL
-  )
+  # control heatmap width and height
+  if(is.null(width) | is.null(height)){
+    # plot
+    ComplexHeatmap::Heatmap(htdf,
+                            name = "Z-score",
+                            cluster_columns = F,
+                            cluster_rows = F,
+                            row_title = row_title,
+                            # column_title = "Clusters",
+                            right_annotation = right_annotation,
+                            show_row_names = showRowNames,
+                            row_names_gp = grid::gpar(fontface = "italic",
+                                                      fontsize = fontsize),
+                            row_names_side = row_names_side,
+                            border = border,
+                            column_names_side = "top",
+                            column_names_rot = column_names_rot,
+                            top_annotation = column_ha,
+                            col = col_fun)
+  }else{
+    # plot
+    ComplexHeatmap::Heatmap(htdf,
+                            name = "Z-score",
+                            cluster_columns = F,
+                            cluster_rows = F,
+                            row_title = row_title,
+                            # column_title = "Clusters",
+                            right_annotation = right_annotation,
+                            show_row_names = showRowNames,
+                            row_names_gp = grid::gpar(fontface = "italic",
+                                                      fontsize = fontsize),
+                            row_names_side = row_names_side,
+                            border = border,
+                            column_names_side = "top",
+                            column_names_rot = column_names_rot,
+                            top_annotation = column_ha,
+                            col = col_fun,
+                            width = ggplot2::unit(width,"cm"),
+                            height = ggplot2::unit(height,"cm"))
+  }
+
 }

@@ -1,6 +1,6 @@
 Package: scRNAtoolVis
-Title: Making scRNA-seq visualization more easier and better
-Version: 0.0.3
+Title: Making ScRNA-seq Visualization More Easier and Better
+Version: 0.0.4
 Authors@R: 
     person("Junjun", "Lao", , "3219030654@stu.cpu.edu.cn", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
@@ -13,13 +13,22 @@ Imports:
     circlize,
     ComplexHeatmap,
     dplyr,
+    ggdendro,
+    ggh4x,
     ggplot2,
     ggrepel,
     ggsci,
     ggunchull,
     grid,
+    jjAnno,
     magrittr,
     patchwork,
+    purrr,
     reshape2,
+    scales,
     Seurat,
     stats
+Depends: 
+    tidyverse,
+    R (>= 2.10)
+LazyData: true

@@ -83,7 +83,7 @@
 #'           anno = TRUE,
 #'           plot.margin = c(3,1,1,1))
 
-globalVariables(c("%||%",".","avg.exp", "avg.exp.scaled", "celltype", "group", "pbmc", "pct.exp", "unit"))
+globalVariables(c("%||%",".","avg.exp", "avg.exp.scaled", "celltype", "group", "pct.exp", "unit"))
 
 PercentAbove <- utils::getFromNamespace("PercentAbove", "Seurat")
 
@@ -151,10 +151,10 @@ jjDotPlot <- function(object = NULL,
   # get cluster number or celtype
   # whether split by groups
   if(is.null(split.by)){
-    geneExp$id <- pbmc@meta.data[[id]]
+    geneExp$id <- object@meta.data[[id]]
   }else{
-    geneExp$id <- paste(pbmc@meta.data[[id]],
-                        " (",pbmc@meta.data[[split.by]],")",
+    geneExp$id <- paste(object@meta.data[[id]],
+                        " (",object@meta.data[[split.by]],")",
                         sep = '')
   }
 

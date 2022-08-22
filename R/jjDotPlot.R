@@ -85,6 +85,8 @@
 
 globalVariables(c("%||%",".","avg.exp", "avg.exp.scaled", "celltype", "group", "pbmc", "pct.exp", "unit"))
 
+PercentAbove <- utils::getFromNamespace("PercentAbove", "Seurat")
+
 # define function
 jjDotPlot <- function(object = NULL,
                       assay = NULL,
@@ -168,7 +170,7 @@ jjDotPlot <- function(object = NULL,
           return(mean(x = expm1(x = x)))
         }
       )
-      pct.exp <- apply(X = data.use, MARGIN = 2, FUN = Seurat::PercentAbove, threshold = 0)
+      pct.exp <- apply(X = data.use, MARGIN = 2, FUN = PercentAbove, threshold = 0)
 
       res <- data.frame(id = ident,avg.exp = avg.exp, pct.exp = pct.exp*100)
       res$gene <- rownames(res)

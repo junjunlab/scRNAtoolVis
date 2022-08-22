@@ -27,7 +27,8 @@ Imports:
     reshape2,
     scales,
     Seurat,
-    stats
+    stats,
+    utils
 Depends: 
     tidyverse,
     R (>= 2.10)

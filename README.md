@@ -10,6 +10,10 @@ devtools::install_github('junjunlab/scRNAtoolVis')
 library(scRNAtoolVis)
 ```
 
+## Citation
+
+> Jun Z (2022). *scRNAtoolVis: Useful Functions to Make Your scRNA-seq Plot More Cool!.*  https://github.com/junjunlab/scRNAtoolVis, https://github.com/junjunlab/scRNAtoolVis/wiki/scRNAtoolVis-documentation.
+
 ## More examples see
 > - [https://github.com/junjunlab/scRNAtoolVis/wiki/scRNAtoolVis-documentation. ](https://github.com/junjunlab/scRNAtoolVis/wiki/scRNAtoolVis-documentation.)
 > - https://github.com/junjunlab/scRNAtoolVis/wiki/scRNAtoolVis-Version-0.0.3-documentation

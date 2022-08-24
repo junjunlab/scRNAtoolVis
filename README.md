@@ -1,7 +1,7 @@
 # scRNAtoolVis
  Some useful function to make your scRNA-seq plot more beautiful.
  
- ## Install
+ ## Installation
 
 ```R
 install.packages('devtools')

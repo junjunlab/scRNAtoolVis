@@ -241,7 +241,7 @@ jjDotPlot <- function(object = NULL,
 
   # add group info
   if(!is.null(split.by)){
-    data.plot.res$group <- sapply(strsplit(data.plot.res$id,split = '\\(|\\)'),'[',2)
+    data.plot.res$group <- sapply(strsplit(as.character(data.plot.res$id),split = '\\(|\\)'),'[',2)
   }
 
   # ============================================================================

@@ -44,7 +44,7 @@
 
 \item{dot.min}{the minimum size of dot point, default 1.}
 
-\item{dot.max}{the maximum size of dot point, default 10.}
+\item{dot.max}{the maximum size of dot point, default 6.}
 
 \item{base_size}{the theme base size, default 14.}
 
@@ -84,11 +84,15 @@
 
 \item{legend.position}{ggplot legend position, default "right".}
 
-\item{bar.legendTitle}{colorbar legend title, default "Mean expression \n in group".}
+\item{bar.legendTitle}{colorbar legend title, default "Mean expression in group".}
 
-\item{point.lengdTitle}{point size legend title, default "Fraction of cells \n in group (\%)".}
+\item{point.lengdTitle}{point size legend title, default "Fraction of cells in group (\%)".}
 
 \item{...}{other parameters passed to annoSegment function.}
+
+\item{gene.order}{supply your own gene orders, default NULL.}
+
+\item{cluster.order}{supply your own cluster number orders, default NULL.}
 }
 \value{
 Return a ggplot object.

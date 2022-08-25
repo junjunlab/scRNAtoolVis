@@ -22,7 +22,7 @@
 #' @param rescale.min minimum rescaled average expression threshold, default 0.
 #' @param rescale.max maximum rescaled average expression threshold, default 1.
 #' @param dot.min the minimum size of dot point, default 1.
-#' @param dot.max the maximum size of dot point, default 10.
+#' @param dot.max the maximum size of dot point, default 6.
 #' @param base_size the theme base size, default 14.
 #' @param x.text.angle the x text angle, default 90.
 #' @param x.text.hjust the x text hjust, default 1
@@ -42,9 +42,12 @@
 #' @param textSize annoSegment text size, default 14.
 #' @param hjust annoSegment text hjust, default 0.
 #' @param legend.position ggplot legend position, default "right".
-#' @param bar.legendTitle colorbar legend title, default "Mean expression \n in group".
-#' @param point.lengdTitle point size legend title, default "Fraction of cells \n in group (%)".
+#' @param bar.legendTitle colorbar legend title, default "Mean expression in group".
+#' @param point.lengdTitle point size legend title, default "Fraction of cells in group (%)".
 #' @param ... other parameters passed to annoSegment function.
+#'
+#' @param gene.order supply your own gene orders, default NULL.
+#' @param cluster.order supply your own cluster number orders, default NULL.
 #'
 #' @import tidyverse
 #'
@@ -96,6 +99,8 @@ jjDotPlot <- function(object = NULL,
                       split.by.aesGroup = FALSE,
                       gene = NULL,
                       markerGene = NULL,
+                      gene.order = NULL,
+                      cluster.order = NULL,
                       point.geom = TRUE,
                       point.shape = 21,
                       tile.geom = FALSE,
@@ -108,7 +113,7 @@ jjDotPlot <- function(object = NULL,
                       rescale.min = 0,
                       rescale.max = 1,
                       dot.min = 1,
-                      dot.max = 10,
+                      dot.max = 6,
                       base_size = 14,
                       x.text.angle = 90,
                       x.text.hjust = 1,
@@ -223,7 +228,16 @@ jjDotPlot <- function(object = NULL,
   }
 
   # gene order
-  data.plot.res$gene <- factor(data.plot.res$gene,levels = unique(data.plot.res$gene))
+  if(is.null(gene.order)){
+    data.plot.res$gene <- factor(data.plot.res$gene,levels = unique(data.plot.res$gene))
+  }else{
+    data.plot.res$gene <- factor(data.plot.res$gene,levels = unique(gene.order))
+  }
+
+  # cluster order
+  if(!is.null(cluster.order)){
+    data.plot.res$id <- factor(data.plot.res$id,levels = unique(cluster.order))
+  }
 
   # add group info
   if(!is.null(split.by)){

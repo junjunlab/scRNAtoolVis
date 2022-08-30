@@ -160,11 +160,23 @@ jjDotPlot <- function(object = NULL,
   # get cluster number or celtype
   # whether split by groups
   if(is.null(split.by)){
-    geneExp$id <- object@meta.data[[id]]
+    if(id %in% colnames(object@meta.data)){
+      # using seurat_clusters or Idents
+      geneExp$id <- object@meta.data[[id]]
+    }else{
+      geneExp$id <- Seurat::Idents(object)
+    }
   }else{
-    geneExp$id <- paste(object@meta.data[[id]],
-                        " (",object@meta.data[[split.by]],")",
-                        sep = '')
+    # using seurat_clusters or Idents
+    if(id %in% colnames(object@meta.data)){
+      geneExp$id <- paste(object@meta.data[[id]],
+                          " (",object@meta.data[[split.by]],")",
+                          sep = '')
+    }else{
+      geneExp$id <- paste(Seurat::Idents(object),
+                          " (",object@meta.data[[split.by]],")",
+                          sep = '')
+    }
   }
 
   # calculate mean expressions and percent expression

@@ -50,6 +50,10 @@
 #' @param cluster.order supply your own cluster number orders, default NULL.
 #'
 #' @import tidyverse
+#' @import ggdendro
+#' @import ggsci
+#' @import patchwork
+#' @import utils
 #'
 #' @return Return a ggplot object.
 #' @export

@@ -23,6 +23,7 @@
 #' @param clusterAnnoName Whether to add clsuetr column annotation name. Default is "TRUE".
 #' @param width The heatmap body width. Default is "NULL".
 #' @param height The heatmap body height. Default is "NULL".
+#' @param cluster.order The cell clusters order. Default is "NULL".
 #' @return Return a plot.
 #' @export
 #'
@@ -70,7 +71,8 @@ AverageHeatmap <- function(object = NULL,
                            fontsize = 10,
                            column_names_rot = 45,
                            width = NULL,
-                           height = NULL) {
+                           height = NULL,
+                           cluster.order = NULL) {
   # get cells mean gene expression
   mean_gene_exp <- as.matrix(data.frame(Seurat::AverageExpression(object,
                                                                   features = markerGene,
@@ -80,19 +82,26 @@ AverageHeatmap <- function(object = NULL,
   )))
 
   # add colnames
-  name1 <- gsub(
-    pattern = paste0(assays, ".", sep = ""),
-    replacement = "",
-    colnames(mean_gene_exp)
-  )
+  # name1 <- gsub(
+  #   pattern = paste0(assays, ".", sep = ""),
+  #   replacement = "",
+  #   colnames(mean_gene_exp)
+  # )
+  #
+  # colnames(mean_gene_exp) <- gsub(
+  #   pattern = "\\.",
+  #   replacement = " ", name1
+  # )
 
-  colnames(mean_gene_exp) <- gsub(
-    pattern = "\\.",
-    replacement = " ", name1
-  )
+  colnames(mean_gene_exp) <- levels(Seurat::Idents(object))
 
   # Z-score
   htdf <- t(scale(t(mean_gene_exp), scale = T, center = T))
+
+  # cluster order
+  if(!is.null(cluster.order)){
+    htdf <- htdf[,cluster.order]
+  }
 
   # color
   col_fun <- circlize::colorRamp2(htRange, htCol)

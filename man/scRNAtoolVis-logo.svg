@@ -3,7 +3,7 @@
 <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 470.02 539.87" style="enable-background:new 0 0 470.02 539.87;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.3;}
+	.st0{opacity:0.2;}
 	.st1{fill:url(#SVGID_1_);}
 	.st2{opacity:0.52;fill:url(#SVGID_2_);}
 	.st3{opacity:0.47;fill:url(#SVGID_3_);}
@@ -3636,7 +3636,7 @@ ESCyGFBexvwNBeQA/l/8Bj//2Q==" transform="matrix(0.1608 0 0 0.1608 37.6383 301.40
 </image>
 <g class="st0">
 	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="4.9382" y1="269.1695" x2="465.4848" y2="269.1695">
-		<stop  offset="3.995842e-07" style="stop-color:#E61673;stop-opacity:0.3"/>
+		<stop  offset="3.995842e-07" style="stop-color:#E61673;stop-opacity:0.5"/>
 		<stop  offset="1" style="stop-color:#187FC4;stop-opacity:0"/>
 	</linearGradient>
 	<polygon class="st1" points="465.48,402.12 465.48,136.22 235.21,3.27 4.94,136.22 4.94,402.12 235.21,535.07 	"/>

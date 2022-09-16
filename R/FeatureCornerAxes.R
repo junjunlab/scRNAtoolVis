@@ -150,9 +150,19 @@ FeatureCornerAxes <- function(object = NULL,
   } else if (axes == "one") {
     # add specific group cornner
     if(is.null(cornerVariable)){
-      firstFacet <- unique(pc12[, groupFacet])[1]
+      lev <- levels(pc12[, groupFacet])
+      if(!is.null(lev)){
+        firstFacet <- factor(lev[1],levels = lev)
+      }else{
+        firstFacet <- unique(pc12[, groupFacet])[1]
+      }
     }else{
-      firstFacet <- cornerVariable
+      lev <- levels(pc12[, groupFacet])
+      if(!is.null(lev)){
+        firstFacet <- factor(cornerVariable,levels = lev)
+      }else{
+        firstFacet <- cornerVariable
+      }
     }
 
     # axies data

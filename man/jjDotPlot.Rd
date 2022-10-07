@@ -2,7 +2,7 @@
 % Please edit documentation in R/jjDotPlot.R
 \name{jjDotPlot}
 \alias{jjDotPlot}
-\title{using dotplot to visulaize gene expression}
+\title{using dotplot to visualize gene expression}
 \arguments{
 \item{object}{seurat object, default NULL.}
 
@@ -98,7 +98,7 @@
 Return a ggplot object.
 }
 \description{
-using dotplot to visulaize gene expression
+using dotplot to visualize gene expression
 }
 \examples{
 httest <- system.file("extdata", "htdata.RDS", package = "scRNAtoolVis")

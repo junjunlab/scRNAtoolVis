@@ -1,6 +1,6 @@
 #' @name jjDotPlot
 #' @author Junjun Lao
-#' @title using dotplot to visulaize gene expression
+#' @title using dotplot to visualize gene expression
 #'
 #' @param object seurat object, default NULL.
 #' @param assay the assay to be selected, default NULL.

@@ -92,8 +92,8 @@ jjVolcano <- function(diffData = NULL,
     ggplot2::geom_col(data = back.data,
                       ggplot2::aes(x = cluster,y = max),fill = back.col)
 
-  ap1 <- paste("adjust Pvalue >= ",adjustP.cutoff,sep = '')
-  ap2 <- paste("adjust Pvalue < ",adjustP.cutoff,sep = '')
+  # ap1 <- paste("adjust Pvalue >= ",adjustP.cutoff,sep = '')
+  # ap2 <- paste("adjust Pvalue < ",adjustP.cutoff,sep = '')
 
   # color type
   if(col.type == "updown"){
@@ -105,8 +105,7 @@ jjVolcano <- function(diffData = NULL,
     p2 <- p1 +
       # add point
       ggplot2::geom_jitter(ggplot2::aes(color = type2),size = pSize) +
-      ggplot2::scale_color_manual(values = c(ap1 = aesCol[1],
-                                             ap2 = aesCol[2]))
+      ggplot2::scale_color_manual(values = c(aesCol[2],aesCol[1]))
   }
 
   # theme details

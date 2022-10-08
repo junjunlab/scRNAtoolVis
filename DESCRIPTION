@@ -13,6 +13,7 @@ Imports:
     circlize,
     ComplexHeatmap,
     dplyr,
+    geomtextpath,
     ggdendro,
     ggh4x,
     ggplot2,

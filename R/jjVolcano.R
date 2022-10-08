@@ -16,6 +16,10 @@
 #' @param base_size theme base size, default 14.
 #' @param tile.col cluster tile fill color, default jjAnno::useMyCol("paired",n = 9).
 #' @param ... other arguments passed by "geom_text_repel".
+#' @param cluster.order whether given your cluster orders, default NULL.
+#' @param polar whether make the plot to br polar, default FASLE.
+#' @param expand the y axis expand, default c(-1,1).
+#' @param flip whether flip the plot, default FASLE.
 #'
 #' @return a ggplot object.
 #' @export
@@ -24,8 +28,6 @@
 #' \dontrun{jjVolcano(diffData = pbmc.markers)}
 
 globalVariables(c('p_val', 'p_val_adj', 'type', 'type2'))
-
-# define function
 jjVolcano <- function(diffData = NULL,
                       myMarkers = NULL,
                       log2FC.cutoff = 0.25,
@@ -39,6 +41,10 @@ jjVolcano <- function(diffData = NULL,
                       legend.position = c(0.7,0.9),
                       base_size = 14,
                       tile.col = jjAnno::useMyCol("paired",n = 9),
+                      cluster.order = NULL,
+                      polar = FALSE,
+                      expand = c(-1,1),
+                      flip = FALSE,
                       ...){
   # filter data
   diff.marker <- diffData %>%
@@ -50,6 +56,12 @@ jjVolcano <- function(diffData = NULL,
     dplyr::mutate(type2 = ifelse(p_val_adj < adjustP.cutoff,
                                  paste("adjust Pvalue < ",adjustP.cutoff,sep = ''),
                                  paste("adjust Pvalue >= ",adjustP.cutoff,sep = '')))
+
+  # cluster orders
+  if(!is.null(cluster.order)){
+    diff.marker$cluster <- factor(diff.marker$cluster,
+                                  levels = cluster.order)
+  }
 
   # get background cols
   purrr::map_df(unique(diff.marker$cluster),function(x){
@@ -115,10 +127,7 @@ jjVolcano <- function(diffData = NULL,
     ggplot2::theme(panel.grid = ggplot2::element_blank(),
                    legend.position = legend.position,
                    legend.title = ggplot2::element_blank(),
-                   legend.background = ggplot2::element_blank(),
-                   axis.line.x = ggplot2::element_blank(),
-                   axis.text.x = ggplot2::element_blank(),
-                   axis.ticks.x = ggplot2::element_blank()) +
+                   legend.background = ggplot2::element_blank()) +
     ggplot2::xlab('Clusters') + ggplot2::ylab('Average log2FoldChange') +
     ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(size = 5)))
 
@@ -130,13 +139,42 @@ jjVolcano <- function(diffData = NULL,
                        alpha = 0.3,
                        show.legend = F) +
     ggplot2::scale_fill_manual(values = tile.col) +
-    ggplot2::geom_text(ggplot2::aes(x = cluster,y = 0,label = cluster)) +
     # add gene label
     ggrepel::geom_text_repel(data = top.marker,
                              ggplot2::aes(x = cluster,y = avg_log2FC,label = gene),
-                             max.overlaps = 50)
+                             max.overlaps = 50,
+                             ...)
 
-  return(p4)
+  # whether coord_plolar
+  if(polar == TRUE){
+    p5 <- p4 +
+      geomtextpath::geom_textpath(ggplot2::aes(x = cluster,y = 0,label = cluster)) +
+      ggplot2::scale_y_continuous(n.breaks = 6,
+                                  expand = ggplot2::expansion(mult = expand)) +
+      ggplot2::theme_void(base_size = base_size) +
+      ggplot2::theme(legend.position = legend.position,
+                     legend.title = ggplot2::element_blank()) +
+      ggplot2::coord_polar(clip = 'off',theta = 'x')
+  }else{
+    # whether flip plot
+    if(flip == TRUE){
+      p5 <- p4 +
+        ggplot2::scale_y_continuous(n.breaks = 6) +
+        ggplot2::geom_label(ggplot2::aes(x = cluster,y = 0,label = cluster)) +
+        ggplot2::theme(axis.line.y = ggplot2::element_blank(),
+                       axis.text.y = ggplot2::element_blank(),
+                       axis.ticks.y = ggplot2::element_blank()) +
+        ggplot2::coord_flip()
+    }else{
+      p5 <- p4 +
+        ggplot2::scale_y_continuous(n.breaks = 6) +
+        ggplot2::geom_text(ggplot2::aes(x = cluster,y = 0,label = cluster)) +
+        ggplot2::theme(axis.line.x = ggplot2::element_blank(),
+                       axis.text.x = ggplot2::element_blank(),
+                       axis.ticks.x = ggplot2::element_blank())
+    }
+  }
+  return(p5)
 }
 
 ###############################

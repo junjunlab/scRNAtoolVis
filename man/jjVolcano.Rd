@@ -31,6 +31,14 @@
 \item{tile.col}{cluster tile fill color, default jjAnno::useMyCol("paired",n = 9).}
 
 \item{...}{other arguments passed by "geom_text_repel".}
+
+\item{cluster.order}{whether given your cluster orders, default NULL.}
+
+\item{polar}{whether make the plot to br polar, default FASLE.}
+
+\item{expand}{the y axis expand, default c(-1,1).}
+
+\item{flip}{whether flip the plot, default FASLE.}
 }
 \value{
 a ggplot object.

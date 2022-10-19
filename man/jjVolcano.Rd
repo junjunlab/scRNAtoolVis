@@ -39,6 +39,8 @@
 \item{expand}{the y axis expand, default c(-1,1).}
 
 \item{flip}{whether flip the plot, default FASLE.}
+
+\item{order.by}{top marker gene selection method, how the order is, default c("avg_log2FC").}
 }
 \value{
 a ggplot object.

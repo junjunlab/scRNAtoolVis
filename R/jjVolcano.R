@@ -21,6 +21,8 @@
 #' @param expand the y axis expand, default c(-1,1).
 #' @param flip whether flip the plot, default FASLE.
 #'
+#' @param order.by top marker gene selection method, how the order is, default c("avg_log2FC").
+#'
 #' @return a ggplot object.
 #' @export
 #'
@@ -30,6 +32,7 @@
 globalVariables(c('p_val', 'p_val_adj', 'type', 'type2'))
 jjVolcano <- function(diffData = NULL,
                       myMarkers = NULL,
+                      order.by = c("avg_log2FC"), # c("avg_log2FC","p_val")
                       log2FC.cutoff = 0.25,
                       pvalue.cutoff = 0.05,
                       adjustP.cutoff = 0.01,
@@ -75,13 +78,27 @@ jjVolcano <- function(diffData = NULL,
   }) -> back.data
 
   # get top gene
-  top.marker.max <- diff.marker %>%
-    dplyr::group_by(cluster) %>%
-    dplyr::slice_max(n = topGeneN,order_by = avg_log2FC)
+  top.marker.tmp <- diff.marker %>%
+    dplyr::group_by(cluster,type)
 
-  top.marker.min <- diff.marker %>%
-    dplyr::group_by(cluster) %>%
-    dplyr::slice_min(n = topGeneN,order_by = avg_log2FC)
+  # order
+  if(length(order.by) == 1){
+    top.marker.max <- top.marker.tmp %>%
+      dplyr::slice_max(n = topGeneN,order_by = get(order.by))
+
+    top.marker.min <- top.marker.tmp %>%
+      dplyr::group_by(cluster) %>%
+      dplyr::slice_min(n = topGeneN,order_by = get(order.by))
+
+  }else{
+    top.marker.max <- top.marker.tmp %>%
+      dplyr::arrange(dplyr::desc(get(order.by[1])),get(order.by[2])) %>%
+      dplyr::slice_head(n = topGeneN)
+
+    top.marker.min <- top.marker.tmp %>%
+      dplyr::arrange(dplyr::desc(get(order.by[1])),get(order.by[2])) %>%
+      dplyr::slice_tail(n = topGeneN)
+  }
 
   # combine
   top.marker <- rbind(top.marker.max,top.marker.min)

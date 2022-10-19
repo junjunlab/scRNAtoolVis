@@ -24,6 +24,7 @@
 #' @param width The heatmap body width. Default is "NULL".
 #' @param height The heatmap body height. Default is "NULL".
 #' @param cluster.order The cell clusters order. Default is "NULL".
+#' @param ... Other arguments passed with ComplexHeatmap::rowAnnotation and ComplexHeatmap::Heatmap.
 #' @return Return a plot.
 #' @export
 #'
@@ -72,7 +73,8 @@ AverageHeatmap <- function(object = NULL,
                            column_names_rot = 45,
                            width = NULL,
                            height = NULL,
-                           cluster.order = NULL) {
+                           cluster.order = NULL,
+                           ...) {
   # get cells mean gene expression
   mean_gene_exp <- as.matrix(data.frame(Seurat::AverageExpression(object,
                                                                   features = markerGene,
@@ -145,7 +147,8 @@ AverageHeatmap <- function(object = NULL,
     geneMark = ComplexHeatmap::rowAnnotation(gene = ComplexHeatmap::anno_mark(at = index,
                                                                               labels = annoGene,
                                                                               labels_gp = grid::gpar(fontface = 'italic',
-                                                                                                     fontsize = fontsize)))
+                                                                                                     fontsize = fontsize)),
+                                             ...)
 
     right_annotation = geneMark
   }else{
@@ -170,7 +173,8 @@ AverageHeatmap <- function(object = NULL,
                             column_names_side = "top",
                             column_names_rot = column_names_rot,
                             top_annotation = column_ha,
-                            col = col_fun)
+                            col = col_fun,
+                            ...)
   }else{
     # plot
     ComplexHeatmap::Heatmap(htdf,
@@ -190,7 +194,8 @@ AverageHeatmap <- function(object = NULL,
                             top_annotation = column_ha,
                             col = col_fun,
                             width = ggplot2::unit(width,"cm"),
-                            height = ggplot2::unit(height,"cm"))
+                            height = ggplot2::unit(height,"cm"),
+                            ...)
   }
 
 }

@@ -27,7 +27,8 @@ AverageHeatmap(
   column_names_rot = 45,
   width = NULL,
   height = NULL,
-  cluster.order = NULL
+  cluster.order = NULL,
+  ...
 )
 }
 \arguments{
@@ -76,6 +77,8 @@ AverageHeatmap(
 \item{height}{The heatmap body height. Default is "NULL".}
 
 \item{cluster.order}{The cell clusters order. Default is "NULL".}
+
+\item{...}{Other arguments passed with ComplexHeatmap::rowAnnotation and ComplexHeatmap::Heatmap.}
 }
 \value{
 Return a plot.

@@ -79,26 +79,32 @@ jjVolcano <- function(diffData = NULL,
 
   # get top gene
   top.marker.tmp <- diff.marker %>%
-    dplyr::group_by(cluster,type)
+    dplyr::group_by(cluster)
 
   # order
-  if(length(order.by) == 1){
-    top.marker.max <- top.marker.tmp %>%
-      dplyr::slice_max(n = topGeneN,order_by = get(order.by))
+  # if(length(order.by) == 1){
+  #   top.marker.max <- top.marker.tmp %>%
+  #     dplyr::slice_max(n = topGeneN,order_by = get(order.by))
+  #
+  #   top.marker.min <- top.marker.tmp %>%
+  #     dplyr::group_by(cluster) %>%
+  #     dplyr::slice_min(n = topGeneN,order_by = get(order.by))
+  #
+  # }else{
+  #   top.marker.max <- top.marker.tmp %>%
+  #     dplyr::arrange(dplyr::desc(get(order.by[1])),get(order.by[2])) %>%
+  #     dplyr::slice_head(n = topGeneN)
+  #
+  #   top.marker.min <- top.marker.tmp %>%
+  #     dplyr::arrange(dplyr::desc(get(order.by[1])),get(order.by[2])) %>%
+  #     dplyr::slice_tail(n = topGeneN)
+  # }
 
-    top.marker.min <- top.marker.tmp %>%
-      dplyr::group_by(cluster) %>%
-      dplyr::slice_min(n = topGeneN,order_by = get(order.by))
+  top.marker.max <- top.marker.tmp %>%
+    dplyr::slice_max(n = topGeneN,order_by = get(order.by))
 
-  }else{
-    top.marker.max <- top.marker.tmp %>%
-      dplyr::arrange(dplyr::desc(get(order.by[1])),get(order.by[2])) %>%
-      dplyr::slice_head(n = topGeneN)
-
-    top.marker.min <- top.marker.tmp %>%
-      dplyr::arrange(dplyr::desc(get(order.by[1])),get(order.by[2])) %>%
-      dplyr::slice_tail(n = topGeneN)
-  }
+  top.marker.min <- top.marker.tmp %>%
+    dplyr::slice_min(n = topGeneN,order_by = get(order.by))
 
   # combine
   top.marker <- rbind(top.marker.max,top.marker.min)

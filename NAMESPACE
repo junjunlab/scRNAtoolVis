@@ -3,6 +3,7 @@
 export("%>%")
 export(AverageHeatmap)
 export(FeatureCornerAxes)
+export(cellRatioPlot)
 export(clusterCornerAxes)
 export(jjDotPlot)
 export(jjVolcano)

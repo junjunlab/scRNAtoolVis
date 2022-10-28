@@ -14,6 +14,7 @@ Imports:
     ComplexHeatmap,
     dplyr,
     geomtextpath,
+    ggalluvial,
     ggdendro,
     ggh4x,
     ggplot2,

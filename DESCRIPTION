@@ -12,6 +12,7 @@ RoxygenNote: 7.2.1
 Imports: 
     circlize,
     ComplexHeatmap,
+    cowplot,
     dplyr,
     geomtextpath,
     ggalluvial,

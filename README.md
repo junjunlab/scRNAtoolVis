@@ -7,6 +7,9 @@
 install.packages('devtools')
 devtools::install_github('junjunlab/scRNAtoolVis')
 
+# if not install ggunchull
+devtools::install_github("sajuukLyu/ggunchull", type = "source")
+
 library(scRNAtoolVis)
 ```
 
@@ -17,5 +20,4 @@ library(scRNAtoolVis)
 ## More examples see
 > - https://junjunlab.github.io/scRNAtoolVis-manual/
 
-![wallhaven-3kwmry_1280x640](https://user-images.githubusercontent.com/64965509/175869959-c952e536-f7b6-47af-9941-7756dcabedb7.png)
-
+![image](https://user-images.githubusercontent.com/64965509/198531385-00b0587d-e202-4417-b11d-53cd419594e6.png)

@@ -28,6 +28,8 @@ AverageHeatmap(
   width = NULL,
   height = NULL,
   cluster.order = NULL,
+  cluster_columns = FALSE,
+  cluster_rows = FALSE,
   ...
 )
 }
@@ -77,6 +79,10 @@ AverageHeatmap(
 \item{height}{The heatmap body height. Default is "NULL".}
 
 \item{cluster.order}{The cell clusters order. Default is "NULL".}
+
+\item{cluster_columns}{Whether cluster columns. Default is "FALSE".}
+
+\item{cluster_rows}{Whether cluster rows. Default is "FALSE".}
 
 \item{...}{Other arguments passed with ComplexHeatmap::rowAnnotation and ComplexHeatmap::Heatmap.}
 }

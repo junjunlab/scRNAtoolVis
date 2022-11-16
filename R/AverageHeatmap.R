@@ -24,6 +24,10 @@
 #' @param width The heatmap body width. Default is "NULL".
 #' @param height The heatmap body height. Default is "NULL".
 #' @param cluster.order The cell clusters order. Default is "NULL".
+#'
+#' @param cluster_columns Whether cluster columns. Default is "FALSE".
+#' @param cluster_rows Whether cluster rows. Default is "FALSE".
+#'
 #' @param ... Other arguments passed with ComplexHeatmap::rowAnnotation and ComplexHeatmap::Heatmap.
 #' @return Return a plot.
 #' @export
@@ -74,6 +78,8 @@ AverageHeatmap <- function(object = NULL,
                            width = NULL,
                            height = NULL,
                            cluster.order = NULL,
+                           cluster_columns = FALSE,
+                           cluster_rows = FALSE,
                            ...) {
   # get cells mean gene expression
   mean_gene_exp <- as.matrix(data.frame(Seurat::AverageExpression(object,
@@ -157,11 +163,12 @@ AverageHeatmap <- function(object = NULL,
 
   # control heatmap width and height
   if(is.null(width) | is.null(height)){
+
     # plot
     ComplexHeatmap::Heatmap(htdf,
                             name = "Z-score",
-                            cluster_columns = F,
-                            cluster_rows = F,
+                            cluster_columns = cluster_columns,
+                            cluster_rows = cluster_rows,
                             row_title = row_title,
                             # column_title = "Clusters",
                             right_annotation = right_annotation,

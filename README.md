@@ -1,4 +1,4 @@
-# scRNAtoolVis <img src="man/scRNAtoolVis-logo.svg" align="right" height="200" />
+# scRNAtoolVis <img src="man/scRNAtoolVis-logo.png" align="right" height="200" />
  Some useful function to make your scRNA-seq plot more beautiful.
  
  ## Installation

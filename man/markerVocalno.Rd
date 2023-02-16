@@ -6,6 +6,8 @@
 \arguments{
 \item{markers}{Dataframe marker genes from findAllmarkers function from seurat.}
 
+\item{ownGene}{Your own gene names to be labeled on plot, defaults is null.}
+
 \item{topn}{Numbers top genes to label, defaults is 5.}
 
 \item{log2FC}{The threshold of log2FC, defaults is 0.25.}

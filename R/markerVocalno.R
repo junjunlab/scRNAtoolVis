@@ -2,6 +2,7 @@
 #' @author Junjun Lao
 #' @title Marker genes vocalno plot
 #' @param markers Dataframe marker genes from findAllmarkers function from seurat.
+#' @param ownGene Your own gene names to be labeled on plot, defaults is null.
 #' @param topn  Numbers top genes to label, defaults is 5.
 #' @param log2FC The threshold of log2FC, defaults is 0.25.
 #' @param hlineSize Hline size, defaults is 1.
@@ -33,6 +34,7 @@ globalVariables(c("avg_log2FC", "cluster", "gene", "pct.1", "pct.2"))
 
 # define function
 markerVocalno <- function(markers = NULL,
+                          ownGene = NULL,
                           topn = 5,
                           log2FC = 0.25,
                           labelCol = NULL,
@@ -48,14 +50,19 @@ markerVocalno <- function(markers = NULL,
                           facetFill = 'white',
                           ylab = 'Log2-Fold Change',
                           nrow = 1) {
-  # top genes
-  toppos <- markers %>% dplyr::group_by(cluster) %>%
-    dplyr::top_n(n = topn, wt = avg_log2FC)
-  topnegtive <- markers %>% dplyr::group_by(cluster) %>%
-    dplyr::top_n(n = -topn, wt = avg_log2FC)
+  # whether supply own gene names
+  if(is.null(ownGene)){
+    # top genes
+    toppos <- markers %>% dplyr::group_by(cluster) %>%
+      dplyr::top_n(n = topn, wt = avg_log2FC)
+    topnegtive <- markers %>% dplyr::group_by(cluster) %>%
+      dplyr::top_n(n = -topn, wt = avg_log2FC)
 
-  # merge
-  topgene <- rbind(toppos, topnegtive)
+    # merge
+    topgene <- rbind(toppos, topnegtive)
+  }else{
+    topgene <- markers %>% dplyr::filter(gene %in% ownGene)
+  }
 
   # plot
   ggplot2::ggplot(markers,

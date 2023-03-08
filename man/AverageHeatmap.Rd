@@ -30,6 +30,7 @@ AverageHeatmap(
   cluster.order = NULL,
   cluster_columns = FALSE,
   cluster_rows = FALSE,
+  gene.order = NULL,
   ...
 )
 }
@@ -83,6 +84,8 @@ AverageHeatmap(
 \item{cluster_columns}{Whether cluster columns. Default is "FALSE".}
 
 \item{cluster_rows}{Whether cluster rows. Default is "FALSE".}
+
+\item{gene.order}{the gene orders for heatmap. Default is "NULL".}
 
 \item{...}{Other arguments passed with ComplexHeatmap::rowAnnotation and ComplexHeatmap::Heatmap.}
 }

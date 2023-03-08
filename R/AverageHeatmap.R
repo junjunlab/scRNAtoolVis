@@ -27,6 +27,7 @@
 #'
 #' @param cluster_columns Whether cluster columns. Default is "FALSE".
 #' @param cluster_rows Whether cluster rows. Default is "FALSE".
+#' @param gene.order the gene orders for heatmap. Default is "NULL".
 #'
 #' @param ... Other arguments passed with ComplexHeatmap::rowAnnotation and ComplexHeatmap::Heatmap.
 #' @return Return a plot.
@@ -80,6 +81,7 @@ AverageHeatmap <- function(object = NULL,
                            cluster.order = NULL,
                            cluster_columns = FALSE,
                            cluster_rows = FALSE,
+                           gene.order = NULL,
                            ...) {
   # get cells mean gene expression
   mean_gene_exp <- as.matrix(data.frame(Seurat::AverageExpression(object,
@@ -109,6 +111,11 @@ AverageHeatmap <- function(object = NULL,
   # cluster order
   if(!is.null(cluster.order)){
     htdf <- htdf[,cluster.order]
+  }
+
+  # gene order
+  if(!is.null(gene.order)){
+    htdf <- htdf[gene.order,]
   }
 
   # color

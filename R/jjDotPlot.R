@@ -283,7 +283,7 @@ jjDotPlot <- function(object = NULL,
                                                                    title.hjust = 0.5,
                                                                    barwidth = unit(bar.width,"cm"),
                                                                    frame.colour = "black",
-                                                                   frame.linewidth = 2,
+                                                                   frame.linewidth = 0.8,
                                                                    ticks.colour = "black"))
   # point size layer
   point.layer <- ggplot2::guides(size = ggplot2::guide_legend(title = point.lengdTitle,

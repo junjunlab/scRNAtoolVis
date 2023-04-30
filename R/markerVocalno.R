@@ -62,6 +62,8 @@ markerVocalno <- function(markers = NULL,
     topgene <- rbind(toppos, topnegtive)
   }else{
     topgene <- markers %>% dplyr::filter(gene %in% ownGene)
+    toppos <- topgene %>% dplyr::filter(avg_log2FC > 0)
+    topnegtive <- topgene %>% dplyr::filter(avg_log2FC < 0)
   }
 
   # plot

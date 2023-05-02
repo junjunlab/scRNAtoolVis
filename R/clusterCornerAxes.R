@@ -157,9 +157,9 @@ clusterCornerAxes <- function(object = NULL,
   mid <- abs(relLength * lower) / 2 + lower
 
   # give reduction type
-  if (reduction == "umap") {
+  if (startsWith(reduction,"umap")) {
     axs_label <- paste("UMAP", 2:1, sep = "")
-  } else if (reduction == "tsne") {
+  } else if (startsWith(reduction,"tsne")) {
     axs_label <- paste("t-SNE", 2:1, sep = "")
   } else {
     print("Please give correct type(umap or tsne)!")

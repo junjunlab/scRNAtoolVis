@@ -26,6 +26,7 @@ Imports:
     jjAnno,
     magrittr,
     patchwork,
+    plyr,
     purrr,
     reshape2,
     scales,

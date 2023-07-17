@@ -4,6 +4,8 @@ globalVariables(c("barcode","distinct"))
 #'
 #' This function generates a track or heatmap plot based on the provided data.
 #'
+#' @author Jun Zhang
+#'
 #' @param object An optional object containing the data.
 #' @param plot.type The type of plot to generate, either "track" or "heatmap".
 #' @param genes A vector or data frame specifying the genes to plot.

@@ -44,3 +44,6 @@ A ggplot object representing the track or heatmap plot.
 \description{
 This function generates a track or heatmap plot based on the provided data.
 }
+\author{
+Jun Zhang
+}

@@ -1,6 +1,6 @@
 Package: scRNAtoolVis
 Title: Making ScRNA-seq Visualization More Easier and Better
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: 
     person("Jun", "Zhang", , "3219030654@stu.cpu.edu.cn", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))

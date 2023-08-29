@@ -9,7 +9,14 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Remotes:
+  junjunlab/jjAnno,
+  junjunlab/jjPlot,
+  sajuukLyu/ggunchull
 Imports: 
+    jjAnno,
+    jjPlot,
+    ggunchull,
     circlize,
     ComplexHeatmap,
     cowplot,
@@ -21,9 +28,7 @@ Imports:
     ggplot2,
     ggrepel,
     ggsci,
-    ggunchull,
     grid,
-    jjAnno,
     magrittr,
     patchwork,
     plyr,

@@ -123,7 +123,7 @@ scatterCellPlot <- function(object = NULL,
                         width = unit(bar.width, "npc"),
                         height = unit(0.7, "npc"),
                         just = "left",
-                        yscale = c(0,nrow(cell_num) + 0.5),
+                        yscale = c(0,nrow(cell_num) + 0.75),
                         xscale = c(0,max(cell_num$n) + 0.1*max(cell_num$n))))
 
   if(rm.axis == FALSE){
@@ -147,7 +147,7 @@ scatterCellPlot <- function(object = NULL,
                         width = unit(0.2, "npc"),
                         height = unit(0.7, "npc"),
                         just = "left",
-                        yscale = c(0,nrow(cell_num) + 0.5)))
+                        yscale = c(0,nrow(cell_num) + 0.75)))
 
   grid.points(x = rep(0.1,nrow(cell_num)),y = 1:nrow(cell_num),pch = 19,
               gp = gpar(col = cols),size = unit(1.5, "char"))

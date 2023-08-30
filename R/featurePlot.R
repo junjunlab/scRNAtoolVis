@@ -88,6 +88,15 @@ featurePlot <- function(object = NULL,
   # cbind
   mer <- cbind(pc12, geneExp)
 
+  # get nrow and ncol
+  if (is.null(nrow)) {
+    nrow <- ifelse(is.null(ncol), 1, ceiling(length(genes) / ncol))
+  }
+
+  if (is.null(ncol)) {
+    ncol <- ifelse(is.null(nrow), length(genes), ceiling(length(genes) / nrow))
+  }
+
   gene_mtx <- suppressWarnings(matrix(genes,nrow = nrow,ncol = ncol))
 
   # assign colors
@@ -106,7 +115,7 @@ featurePlot <- function(object = NULL,
     lab.shift = unit(-1,"lines")
   }
 
-  # CANVAS FORPLOT
+  # CANVAS FOR PLOT
   grid.newpage()
   pushViewport(viewport(x = 0.5,y = 0.5,
                         width = 0.9,height = 0.9,
@@ -199,7 +208,7 @@ featurePlot <- function(object = NULL,
         }
       }
 
-      # add tsrip
+      # add strip
       if(add.strip == TRUE){
         grid.rect(x = 0.5,y = 1,width = 1,height = 0.15,gp = gpar(fill = "grey85"),
                   just = "bottom")

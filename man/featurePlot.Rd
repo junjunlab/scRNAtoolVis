@@ -24,7 +24,8 @@ featurePlot(
   keep.oneCor = FALSE,
   xlab = NULL,
   ylab = NULL,
-  respect = TRUE
+  respect = TRUE,
+  point.size = 1
 )
 }
 \arguments{
@@ -75,6 +76,8 @@ corner arrows across the entire plot grid, defaults to FALSE.}
 
 \item{respect}{Logical value indicating whether to respect the specified number
 of rows and columns in the plot grid, defaults to TRUE.}
+
+\item{point.size}{the point size, default 1.}
 }
 \description{
 This function creates a scatter plot for multiple genes or features from a

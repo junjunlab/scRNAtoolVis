@@ -34,6 +34,7 @@ globalVariables(c("col_rg","tmp_col"))
 #' @param ylab Label for the y-axis.
 #' @param respect Logical value indicating whether to respect the specified number
 #' of rows and columns in the plot grid, defaults to TRUE.
+#' @param point.size the point size, default 1.
 #'
 #' @examples
 #' \dontrun{
@@ -68,7 +69,8 @@ featurePlot <- function(object = NULL,
                         plot.size = 0.6,
                         keep.oneCor = FALSE,
                         xlab = NULL,ylab = NULL,
-                        respect = TRUE){
+                        respect = TRUE,
+                        point.size = 1){
   # ============================================================================
   # 1_extract data
   # ============================================================================
@@ -195,7 +197,7 @@ featurePlot <- function(object = NULL,
         }
       }
 
-      grid.points(x = tmp_data[,1],y = tmp_data[,2],pch = 19,size = unit(1,"pt"),
+      grid.points(x = tmp_data[,1],y = tmp_data[,2],pch = 19,size = unit(point.size,"pt"),
                   gp = gpar(col = tmp_data$col_f))
 
       # whether draw axis

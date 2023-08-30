@@ -241,13 +241,19 @@ featurePlot <- function(object = NULL,
                               width = 0.025,height = unit(plot.size, "npc"),
                               just = "left",
                               yscale = range(tmp_data[,gene_mtx[i,j]])))
-        grid.rect(x = 0.5, y = unit(seq(0.25,0.75, length = 100), "npc"),
-                  width = unit(1, "npc"), height = unit(0.5, "npc"),
-                  just = "centre",default.units = "npc",
-                  gp = gpar(col = NA, fill = col_p))
-        grid.rect(gp = gpar(fill = NA))
-        # grid.yaxis(main = F)
-        jjPlot::grid.yaxis2(side = "right",tick.len = 0.25)
+        # grid.rect(x = 0.5, y = unit(seq(0.25,0.75, length = 100), "npc"),
+        #           width = unit(1, "npc"), height = unit(0.5, "npc"),
+        #           just = "centre",default.units = "npc",
+        #           gp = gpar(col = NA, fill = col_p))
+        # grid.rect(gp = gpar(fill = NA))
+        # # grid.yaxis(main = F)
+        # jjPlot::grid.yaxis2(side = "right",tick.len = 0.25)
+
+        jjPlot::grid.colorkey(x = tmp_data[,gene_mtx[i,j]],
+                              color = cols,
+                              pos = "v",
+                              ticks.side = "right")
+
         popViewport()
       }
       popViewport()

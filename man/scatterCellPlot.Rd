@@ -11,7 +11,10 @@ scatterCellPlot(
   rm.axis = FALSE,
   cell.id = NULL,
   bar.width = 0.2,
-  point.size = 1
+  point.size = 1,
+  rm.barplot = FALSE,
+  legend.psize = 1.5,
+  arrow.len = 0.2
 )
 }
 \arguments{
@@ -28,6 +31,12 @@ scatterCellPlot(
 \item{bar.width}{Width of the barplot (default is 0.2).}
 
 \item{point.size}{Size of the points in the scatter plot (default is 1).}
+
+\item{rm.barplot}{whether remove barplot, default FALSE.}
+
+\item{legend.psize}{legend point size, default 1.5.}
+
+\item{arrow.len}{arrow length, default 0.2.}
 }
 \value{
 None

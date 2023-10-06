@@ -101,6 +101,7 @@ Return a ggplot object.
 using dotplot to visualize gene expression
 }
 \examples{
+\dontrun{
 httest <- system.file("extdata", "htdata.RDS", package = "scRNAtoolVis")
 pbmc <- readRDS(httest)
 
@@ -131,6 +132,7 @@ jjDotPlot(object = pbmc,
           markerGene = top3pbmc.markers,
           anno = TRUE,
           plot.margin = c(3,1,1,1))
+          }
 }
 \author{
 Junjun Lao

@@ -45,7 +45,7 @@ scatterCellPlot <- function(object = NULL,
 
   # combine
   pc12 <- cbind(reduc, meta)
-  pc12$idents <- Seurat::Idents(object)
+  pc12$idents <- as.character(Seurat::Idents(object))
 
   # summary celltype numbers
   if(is.null(cell.id)){
@@ -97,7 +97,8 @@ scatterCellPlot <- function(object = NULL,
   # draw points
   # i = 1
   for (i in seq_along(celltype)) {
-    tmp <- pc12 |> dplyr::filter(idents == celltype[i])
+    # tmp <- pc12 |> dplyr::filter(idents == celltype[i])
+    tmp <- pc12[which(pc12$idents %in% celltype[i]),]
 
     grid.points(x = tmp[,1],y = tmp[,2],pch = 19,size = unit(point.size,"pt"),
                 gp = gpar(col = cols[i]))

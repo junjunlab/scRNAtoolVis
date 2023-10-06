@@ -59,6 +59,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' httest <- system.file("extdata", "htdata.RDS", package = "scRNAtoolVis")
 #' pbmc <- readRDS(httest)
 #'
@@ -89,6 +90,7 @@
 #'           markerGene = top3pbmc.markers,
 #'           anno = TRUE,
 #'           plot.margin = c(3,1,1,1))
+#'           }
 
 globalVariables(c("%||%",".","avg.exp", "avg.exp.scaled", "celltype", "group", "pct.exp", "unit"))
 

@@ -253,7 +253,7 @@ clusterCornerAxes <- function(object = NULL,
     # return(p0)
   }else{
     p0 <- plabel +
-      ggunchull::stat_unchull(ggplot2::aes_string(fill = clusterCol),
+      ggunchull::stat_unchull0(ggplot2::aes_string(fill = clusterCol),
                               alpha = cicAlpha,
                               size = cicLineSize,
                               color = cicLineColor,

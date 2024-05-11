@@ -12,17 +12,17 @@
 
 \item{pvalue.cutoff}{pvalue cutoff to filter, default 0.05.}
 
-\item{adjustP.cutoff}{ajusted pvalue cutoff to be colored in plot, default 0.01.}
+\item{adjustP.cutoff}{adjusted pvalue cutoff to be colored in plot, default 0.01.}
 
 \item{topGeneN}{top genes to be labeled in plot, default 5.}
 
-\item{col.type}{point color type('updown/adjustP'), default "updown".}
+\item{col.type}{point color type("updown/adjustP"), default "updown".}
 
 \item{back.col}{background color, default "grey93".}
 
 \item{pSize}{point size, default 0.75.}
 
-\item{aesCol}{point mapping color, default c('#0099CC','#CC3333').}
+\item{aesCol}{point mapping color, default c("#0099CC","#CC3333").}
 
 \item{legend.position}{legend position in plot, default c(0.7,0.9).}
 
@@ -34,11 +34,11 @@
 
 \item{cluster.order}{whether given your cluster orders, default NULL.}
 
-\item{polar}{whether make the plot to br polar, default FASLE.}
+\item{polar}{whether make the plot to br polar, default FALSE.}
 
 \item{expand}{the y axis expand, default c(-1,1).}
 
-\item{flip}{whether flip the plot, default FASLE.}
+\item{flip}{whether flip the plot, default FALSE.}
 
 \item{order.by}{top marker gene selection method, how the order is, default c("avg_log2FC").}
 }
@@ -49,7 +49,9 @@ a ggplot object.
 using jjVolcano to visualize marker genes
 }
 \examples{
-\dontrun{jjVolcano(diffData = pbmc.markers)}
+\dontrun{
+jjVolcano(diffData = pbmc.markers)
+}
 }
 \author{
 Junjun Lao

@@ -4,7 +4,7 @@
 \name{pbmc.markers}
 \alias{pbmc.markers}
 \title{This is a test data for this package
-test data describtion}
+test data description}
 \format{
 An object of class \code{data.frame} with 5921 rows and 7 columns.
 }
@@ -13,7 +13,7 @@ pbmc.markers
 }
 \description{
 This is a test data for this package
-test data describtion
+test data description
 }
 \author{
 Junjun Lao

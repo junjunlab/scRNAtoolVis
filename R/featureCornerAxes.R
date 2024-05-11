@@ -1,6 +1,7 @@
-#' @name FeatureCornerAxes
+#' @name featureCornerAxes
 #' @author Junjun Lao
 #' @title Add corner axes on seurat UMAP/tSNE gene FeaturePlot function figures
+#'
 #' @param object object seurat object.
 #' @param reduction "string", reduction type (umap/tsne).
 #' @param features "string", the gene you want to plot.
@@ -33,7 +34,7 @@
 #' tmp <- readRDS(test)
 #'
 #' # umap
-#' FeatureCornerAxes(
+#' featureCornerAxes(
 #'   object = tmp, reduction = "umap",
 #'   groupFacet = "orig.ident",
 #'   relLength = 0.5, relDist = 0.2,
@@ -41,7 +42,7 @@
 #' )
 #'
 #' # one axes
-#' FeatureCornerAxes(
+#' featureCornerAxes(
 #'   object = tmp, reduction = "umap",
 #'   groupFacet = "orig.ident",
 #'   features = c("Actb", "Ythdc1", "Ythdf2"),
@@ -51,7 +52,7 @@
 #' )
 #'
 #' # tsne
-#' FeatureCornerAxes(
+#' featureCornerAxes(
 #'   object = tmp, reduction = "tsne",
 #'   groupFacet = "orig.ident",
 #'   relLength = 0.5, relDist = 0.2,

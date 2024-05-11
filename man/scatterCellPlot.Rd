@@ -2,21 +2,7 @@
 % Please edit documentation in R/scatterCellPlot.R
 \name{scatterCellPlot}
 \alias{scatterCellPlot}
-\title{Scatter Cell Plot}
-\usage{
-scatterCellPlot(
-  object = NULL,
-  color = NULL,
-  dim = "umap",
-  rm.axis = FALSE,
-  cell.id = NULL,
-  bar.width = 0.2,
-  point.size = 1,
-  rm.barplot = FALSE,
-  legend.psize = 1.5,
-  arrow.len = 0.2
-)
-}
+\title{This function creates a scatter cell plot using the grid package in R.}
 \arguments{
 \item{object}{A Seurat object containing the data.}
 
@@ -45,7 +31,9 @@ None
 This function creates a scatter cell plot using the grid package in R.
 }
 \examples{
-\dontrun{scatterCellPlot(object = seurat_object)}
+\dontrun{
+scatterCellPlot(object = seurat_object)
+}
 
 }
 \author{

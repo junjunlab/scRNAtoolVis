@@ -1,8 +1,6 @@
-#' Scatter Cell Plot
-#'
-#' This function creates a scatter cell plot using the grid package in R.
-#'
+#' @name scatterCellPlot
 #' @author Jun Zhang
+#' @title This function creates a scatter cell plot using the grid package in R.
 #'
 #' @param object A Seurat object containing the data.
 #' @param color A vector of colors for each cell type. If NULL, random colors will be assigned.

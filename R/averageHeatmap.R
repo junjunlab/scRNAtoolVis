@@ -1,6 +1,7 @@
-#' @name AverageHeatmap
+#' @name averageHeatmap
 #' @author Junjun Lao
 #' @title Plot averaged gene expression cross cluster cells
+#'
 #' @param object object seurat object.
 #' @param markerGene Your marker genes.
 #' @param group.by Categories for grouping (e.g, ident, replicate, celltype). "ident" by default.
@@ -42,13 +43,13 @@
 #' markers <- read.table(markergene, sep = ",", header = TRUE)
 #'
 #' # plot
-#' AverageHeatmap(
+#' averageHeatmap(
 #'   object = pbmc,
 #'   markerGene = markers$gene
 #' )
 #'
 #' # change color
-#' AverageHeatmap(
+#' averageHeatmap(
 #'   object = pbmc,
 #'   markerGene = markers$gene,
 #'   htCol = c("#339933", "#FFCC00", "#FF0033")

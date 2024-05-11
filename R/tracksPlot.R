@@ -1,8 +1,6 @@
-#' Generate a track or heatmap plot
-#'
-#' This function generates a track or heatmap plot based on the provided data.
-#'
+#' @name tracksPlot
 #' @author Jun Zhang
+#' @title This function generates a track or heatmap plot based on the provided data.
 #'
 #' @param object An optional object containing the data.
 #' @param plot.type The type of plot to generate, either "track" or "heatmap".

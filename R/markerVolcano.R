@@ -1,6 +1,7 @@
 #' @name markerVolcano
 #' @author Junjun Lao
 #' @title Marker genes volcano plot
+#'
 #' @param markers Dataframe marker genes from findAllmarkers function from seurat.
 #' @param ownGene Your own gene names to be labeled on plot, defaults is null.
 #' @param topn  Numbers top genes to label, defaults is 5.

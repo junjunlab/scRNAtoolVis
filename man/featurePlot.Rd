@@ -2,32 +2,8 @@
 % Please edit documentation in R/featurePlot.R
 \name{featurePlot}
 \alias{featurePlot}
-\title{featurePlot Function}
-\usage{
-featurePlot(
-  object = NULL,
-  dim = "umap",
-  genes = NULL,
-  nrow = NULL,
-  ncol = NULL,
-  quantile.val = 1,
-  color = NULL,
-  rm.axis = FALSE,
-  rm.legend = FALSE,
-  add.rect = FALSE,
-  add.corArrow = FALSE,
-  add.strip = FALSE,
-  corLabel.dist = 0.08,
-  arrow.len = 0.2,
-  arrow.label.size = 6,
-  plot.size = 0.6,
-  keep.oneCor = FALSE,
-  xlab = NULL,
-  ylab = NULL,
-  respect = TRUE,
-  point.size = 1
-)
-}
+\title{This function creates a scatter plot for multiple genes or features from a
+Seurat object.}
 \arguments{
 \item{object}{A Seurat object containing the data.}
 
@@ -85,7 +61,7 @@ Seurat object.
 }
 \examples{
 \dontrun{
-# Assuming 'seurat_obj' is a Seurat object
+# Assuming "seurat_obj" is a Seurat object
 featurePlot(object = seurat_obj, genes = c("gene1", "gene2", "gene3"), nrow = 2, ncol = 2)
 }
 

@@ -1,9 +1,7 @@
-#' featurePlot Function
-#'
-#' This function creates a scatter plot for multiple genes or features from a
-#' Seurat object.
-#'
+#' @name featurePlot
 #' @author Jun Zhang
+#' @title  This function creates a scatter plot for multiple genes or features from a
+#' Seurat object.
 #'
 #' @param object A Seurat object containing the data.
 #' @param dim The dimension to use for plotting, default is "umap".

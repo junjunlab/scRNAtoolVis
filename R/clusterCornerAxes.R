@@ -1,6 +1,7 @@
 #' @name clusterCornerAxes
 #' @author Junjun Lao
 #' @title Add corner axes on seurat UMAP/tSNE cluster figures
+#'
 #' @param object seurat object.
 #' @param reduction "string", reduction type (umap/tsne).
 #' @param groupFacet "string", give the column name in seurat metadata to facet plot.

@@ -16,9 +16,9 @@
 
 \item{split.by.aesGroup}{whether the dot color filled by group, default FALSE.}
 
-\item{gene}{the genes to be drawed in plot, default NULL.}
+\item{gene}{the genes to be drawn in plot, default NULL.}
 
-\item{markerGene}{the marker genes with celltype info to be drawed, default NULL.}
+\item{markerGene}{the marker genes with celltype info to be drawn, default NULL.}
 
 \item{point.geom}{the ggplot "point" geom layer to be shown, default TRUE.}
 
@@ -86,7 +86,7 @@
 
 \item{bar.legendTitle}{colorbar legend title, default "Mean expression in group".}
 
-\item{point.lengdTitle}{point size legend title, default "Fraction of cells in group (\%)".}
+\item{point.legendTitle}{point size legend title, default "Fraction of cells in group (\%)".}
 
 \item{...}{other parameters passed to annoSegment function.}
 
@@ -106,7 +106,7 @@ httest <- system.file("extdata", "htdata.RDS", package = "scRNAtoolVis")
 pbmc <- readRDS(httest)
 
 # add groups
-pbmc$groups <- rep(c('stim','control'),each = 1319)
+pbmc$groups <- rep(c("stim", "control"), each = 1319)
 # add celltype
 pbmc$celltype <- Seurat::Idents(pbmc)
 
@@ -114,25 +114,35 @@ pbmc$celltype <- Seurat::Idents(pbmc)
 markergene <- data("top3pbmc.markers")
 
 # ====================================
-jjDotPlot(object = pbmc,
-          gene = top3pbmc.markers$gene)
+jjDotPlot(
+  object = pbmc,
+  gene = top3pbmc.markers$gene
+)
 
-jjDotPlot(object = pbmc,
-          gene = top3pbmc.markers$gene,
-          id = 'celltype')
+jjDotPlot(
+  object = pbmc,
+  gene = top3pbmc.markers$gene,
+  id = "celltype"
+)
 
-jjDotPlot(object = pbmc,
-          markerGene = top3pbmc.markers)
+jjDotPlot(
+  object = pbmc,
+  markerGene = top3pbmc.markers
+)
 
-jjDotPlot(object = pbmc,
-          markerGene = top3pbmc.markers,
-          xtree = TRUE)
+jjDotPlot(
+  object = pbmc,
+  markerGene = top3pbmc.markers,
+  xtree = TRUE
+)
 
-jjDotPlot(object = pbmc,
-          markerGene = top3pbmc.markers,
-          anno = TRUE,
-          plot.margin = c(3,1,1,1))
-          }
+jjDotPlot(
+  object = pbmc,
+  markerGene = top3pbmc.markers,
+  anno = TRUE,
+  plot.margin = c(3, 1, 1, 1)
+)
+}
 }
 \author{
 Junjun Lao

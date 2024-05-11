@@ -8,10 +8,10 @@
 #' @param pvalue.cutoff pvalue cutoff to filter, default 0.05.
 #' @param adjustP.cutoff adjusted pvalue cutoff to be colored in plot, default 0.01.
 #' @param topGeneN top genes to be labeled in plot, default 5.
-#' @param col.type point color type('updown/adjustP'), default "updown".
+#' @param col.type point color type("updown/adjustP"), default "updown".
 #' @param back.col background color, default "grey93".
 #' @param pSize point size, default 0.75.
-#' @param aesCol point mapping color, default c('#0099CC','#CC3333').
+#' @param aesCol point mapping color, default c("#0099CC","#CC3333").
 #' @param legend.position legend position in plot, default c(0.7,0.9).
 #' @param base_size theme base size, default 14.
 #' @param tile.col cluster tile fill color, default jjAnno::useMyCol("paired",n = 9).

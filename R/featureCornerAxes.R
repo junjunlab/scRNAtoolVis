@@ -2,23 +2,23 @@
 #' @author Junjun Lao
 #' @title Add corner axes on seurat UMAP/tSNE gene FeaturePlot function figures
 #' @param object object seurat object.
-#' @param reduction "string",reduction type (umap/tsne).
-#' @param features "string",the gene you want to plot.
-#' @param groupFacet "string",give the column name in seurat metadata to facet plot, if it is "NULL", facet plot only by gene.
-#' @param relLength "num",the corner axis line relative length to plot axis(0-1).
-#' @param relDist "num",the relative distance of corner axis label to axis.
+#' @param reduction "string", reduction type (umap/tsne).
+#' @param features "string", the gene you want to plot.
+#' @param groupFacet "string", give the column name in seurat metadata to facet plot, if it is "NULL", facet plot only by gene.
+#' @param relLength "num", the corner axis line relative length to plot axis(0-1).
+#' @param relDist "num", the relative distance of corner axis label to axis.
 #' @param aspect.ratio "num", plot width and height ratio, default NULL.
-#' @param low "string",point color with low expression.
-#' @param high "string",point color with high expression.
-#' @param axes "string",show multiple corner axis or only one (mul/one), default "mul".
-#' @param legendPos "string",legend position same as ggplot theme function, default "right".
-#' @param stripCol "string",facet background color, defaults "white".
-#' @param pSize "num",point size.
-#' @param arrowType "string",arrow type (open/closed), default "closed".
-#' @param lineTextcol "string",facet background color, default "white".
+#' @param low "string", point color with low expression.
+#' @param high "string", point color with high expression.
+#' @param axes "string", show multiple corner axis or only one (mul/one), default "mul".
+#' @param legendPos "string", legend position same as ggplot theme function, default "right".
+#' @param stripCol "string", facet background color, defaults "white".
+#' @param pSize "num", point size.
+#' @param arrowType "string", arrow type (open/closed), default "closed".
+#' @param lineTextcol "string", facet background color, default "white".
 #' @param cornerTextSize "num", the corner label text size, default is 5.
 #' @param base_size "num", theme base size, default is 14.
-#' @param themebg Another theme style, default is 'default', or 'bwCorner'.
+#' @param themebg Another theme style, default is "default", or "bwCorner".
 #' @param show.legend Whether show legend, default "TRUE".
 #' @param cornerVariable Which group  corner axis to be added when "axes" set to "one", default is the first group.
 #' @param nLayout = NULL Similar to the ncol/nrow for the layout, default is the gene numbers.

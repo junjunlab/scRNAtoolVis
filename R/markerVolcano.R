@@ -6,7 +6,7 @@
 #' @param topn  Numbers top genes to label, defaults is 5.
 #' @param log2FC The threshold of log2FC, defaults is 0.25.
 #' @param hlineSize Hline size, defaults is 1.
-#' @param hlineColor Hline color, defaults is 'grey50'.
+#' @param hlineColor Hline color, defaults is "grey50".
 #' @param pforce  Positive gene force parameters to avoid overlap gene labels, defaults is 5.
 #' @param nforce Negative gene force parameters to avoid overlap gene labels, defaults is 2.5.
 #' @param nudge_x Adjustments on the horizontal of the gene label, defaults is 0.8.
@@ -14,8 +14,8 @@
 #' @param nnudge_y Adjustments on the horizontal of the negative gene label, defaults is 0.
 #' @param base_size Theme base size, defaults is 14.
 #' @param facetColor Facet border color, defaults is NA.
-#' @param facetFill Facet fill color, defaults is 'white'.
-#' @param ylab Plot y label, defaults is 'Log2-Fold Change'.
+#' @param facetFill Facet fill color, defaults is "white".
+#' @param ylab Plot y label, defaults is "Log2-Fold Change".
 #' @param nrow Numbers rows to plot, defaults is 1.
 #'
 #' @return Return a ggplot.

@@ -37,7 +37,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Assuming 'seurat_obj' is a Seurat object
+#' # Assuming "seurat_obj" is a Seurat object
 #' featurePlot(object = seurat_obj, genes = c("gene1", "gene2", "gene3"), nrow = 2, ncol = 2)
 #' }
 #'

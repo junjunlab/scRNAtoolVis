@@ -3,14 +3,14 @@
 #' @title Plot averaged gene expression cross cluster cells
 #' @param object object seurat object.
 #' @param markerGene Your marker genes.
-#' @param group.by Categories for grouping (e.g, ident, replicate, celltype). 'ident' by default.
+#' @param group.by Categories for grouping (e.g, ident, replicate, celltype). "ident" by default.
 #' @param assays Which assays to use. Default is "RNA" assays.
-#' @param slot Slot(s) to use. Default is "data"
+#' @param slot Slot(s) to use. Default is "data".
 #' @param htCol Heatmap colors. Default is c("#0099CC", "white", "#CC0033").
 #' @param colseed Cluster annotation colors seed, these colors are produced randomly, so you can give a seed to assure produce same colors.  Default is 666.
 #' @param htRange Heatmap values range. Default is c(-2, 0, 2).
-#' @param annoCol Whether use your own annotation clusters colors. Default is 'FALSE'.
-#' @param myanCol You can specify your own annotation clusters colors vectors. Default is 'null'.
+#' @param annoCol Whether use your own annotation clusters colors. Default is "FALSE".
+#' @param myanCol You can specify your own annotation clusters colors vectors. Default is "null".
 #' @param annoColType Cluster annotation colors type (bright, light, dark and random). Default is light.
 #' @param annoColTypeAlpha Cluster annotation colors transparency. Default is 0.
 #' @param row_title Heatmap row title. Default is "Cluster top Marker genes".

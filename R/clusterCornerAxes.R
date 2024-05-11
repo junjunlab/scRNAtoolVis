@@ -7,9 +7,9 @@
 #' @param clusterCol "string", the point color to group by,cluster name, default "seurat_clusters".
 #' @param pSize "num", point size.
 #' @param aspect.ratio "num", plot width and height ratio, default NULL.
-#' @param noSplit 'logic', whether to split/facet the plot, default "TRUE".
+#' @param noSplit "logic", whether to split/facet the plot, default "TRUE".
 #' @param nrow "num", rows to plot when noSplit = FALSE.
-#' @param relLength 'num', the corner axis line relative length to plot axis(0-1).
+#' @param relLength "num", the corner axis line relative length to plot axis(0-1).
 #' @param relDist "num" ,the relative distance of corner axis label to axis.
 #' @param axes "string", show multiple corner axis or only one (mul/one), default "mul".
 #' @param legendPos "string", legend position same as ggplot theme function, default "right".
@@ -19,12 +19,14 @@
 #' @param arrowType "string", arrow type (open/closed), default "closed".
 #' @param cornerTextSize "num", the corner label text size, default is 3.
 #' @param base_size "num", theme base size, default is 14.
-#' @param themebg Another theme style, default is 'default', or 'bwCorner'.
-#' @param addCircle Logic, whether add circle on clusters, default is 'FALSE'.
-#' @param cicAlpha "num", circle fill color alpha, default is 0.1,
+#' @param themebg Another theme style, default is "default", or "bwCorner".
+#' @param addCircle "logic", whether add circle on clusters, default is "FALSE".
+#' @param addCircle.legacy "logic", using the legacy version to add a circle, the parameters `nbin`, `nsm`, `addsm`, `sfac` and `qval` are only applicable to legacy, default is "FALSE".
+#' @param cicAlpha "num", circle fill color alpha, default is 0.1.
+#' @param cicDelta "num", the distance to extend the curve (circle), this parameter only takes effect when `addCircle.legacy = FALSE`.
 #' @param cicLineSize "num", circle line size, default is 1.
-#' @param cicLineColor "num", circle line color, default is 'grey50'.
-#' @param cicLineLty "num", circle line type, default is 'dashed'.
+#' @param cicLineColor "num", circle line color, default is "grey50".
+#' @param cicLineLty "num", circle line type, default is "dashed".
 #' @param nbin "num", number of points used to shape the hull, default 100.
 #' @param nsm "num", number of points used to perform convolution, should less than nbin, default 10.
 #' @param addsm "num", number of additional times of convolution performed, default 1.
@@ -114,6 +116,8 @@ clusterCornerAxes <- function(
     base_size = 14,
     themebg = "default",
     addCircle = FALSE,
+    addCircle.legacy = FALSE,
+    cicDelta,
     cicAlpha = 0.1,
     cicLineSize = 1,
     cicLineColor = "grey50",
@@ -266,7 +270,7 @@ clusterCornerAxes <- function(
   # add circle line
   if (addCircle == FALSE) {
     p0 <- plabel
-  } else {
+  } else if (addCircle.legacy) {
     p0 <- plabel +
       ggunchull::stat_unchull0(
         ggplot2::aes_string(fill = clusterCol),
@@ -280,6 +284,17 @@ clusterCornerAxes <- function(
         addsm = addsm,
         sfac = sfac,
         qval = qval
+      )
+  } else {
+    p0 <- plabel +
+      ggunchull::stat_unchull(
+        ggplot2::aes_string(fill = clusterCol),
+        alpha = cicAlpha,
+        size = cicLineSize,
+        color = cicLineColor,
+        lty = cicLineLty,
+        show.legend = FALSE,
+        delta = cicDelta
       )
   }
 

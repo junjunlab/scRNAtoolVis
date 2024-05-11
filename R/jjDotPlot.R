@@ -8,8 +8,8 @@
 #' @param id the cell clusters id in the metadata info, default "seurat_clusters".
 #' @param split.by the group name to split, default NULL.
 #' @param split.by.aesGroup whether the dot color filled by group, default FALSE.
-#' @param gene the genes to be drawed in plot, default NULL.
-#' @param markerGene the marker genes with celltype info to be drawed, default NULL.
+#' @param gene the genes to be drawn in plot, default NULL.
+#' @param markerGene the marker genes with celltype info to be drawn, default NULL.
 #' @param point.geom the ggplot "point" geom layer to be shown, default TRUE.
 #' @param point.shape the point shape,default 21.
 #' @param tile.geom the ggplot "tile" geom layer to be shown, default FALSE.
@@ -172,7 +172,7 @@ jjDotPlot <- function(
     print("Please supply  one option!")
   }
 
-  # get cluster number or celtype
+  # get cluster number or celltype
   # whether split by groups
   if (is.null(split.by)) {
     if (id %in% colnames(object@meta.data)) {
@@ -224,7 +224,7 @@ jjDotPlot <- function(
       tmp <- data.plot %>%
         dplyr::filter(gene == x)
 
-      # scale value corss groups
+      # scale value cross groups
       if (rescale == TRUE) {
         avg.exp.scale <- tmp %>%
           dplyr::select(avg.exp) %>%
@@ -333,7 +333,7 @@ jjDotPlot <- function(
     )
   )
 
-  # chenge colors
+  # change colors
   if (is.null(split.by)) {
     if (length(dot.col) == 2) {
       pmain <- pmain +
@@ -520,7 +520,7 @@ jjDotPlot <- function(
 
 ###############################
 #' This is a test data for this package
-#' test data describtion
+#' test data description
 #'
 #' @name top3pbmc.markers
 #' @docType data

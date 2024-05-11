@@ -7,12 +7,12 @@
 #' @param assays Which assays to use. Default is "RNA" assays.
 #' @param slot Slot(s) to use. Default is "data"
 #' @param htCol Heatmap colors. Default is c("#0099CC", "white", "#CC0033").
-#' @param colseed Cluster annotaion colors seed, these colors are produed randomly, so you can give a seed to assure produce same colors.  Default is 666.
+#' @param colseed Cluster annotation colors seed, these colors are produced randomly, so you can give a seed to assure produce same colors.  Default is 666.
 #' @param htRange Heatmap values range. Default is c(-2, 0, 2).
 #' @param annoCol Whether use your own annotation clusters colors. Default is 'FALSE'.
 #' @param myanCol You can specify your own annotation clusters colors vectors. Default is 'null'.
-#' @param annoColType Cluster annotaion colors type (bright, light, dark and random). Default is light.
-#' @param annoColTypeAlpha Cluster annotaion colors transparency. Default is 0.
+#' @param annoColType Cluster annotation colors type (bright, light, dark and random). Default is light.
+#' @param annoColTypeAlpha Cluster annotation colors transparency. Default is 0.
 #' @param row_title Heatmap row title. Default is "Cluster top Marker genes".
 #' @param row_names_side Heatmap gene name side. Default is "left".
 #' @param border Whether to shOw heatmap border. Default is "FALSE".

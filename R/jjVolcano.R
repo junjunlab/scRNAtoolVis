@@ -6,7 +6,7 @@
 #' @param myMarkers whether supply your own gene labels, default NULL.
 #' @param log2FC.cutoff log2FoldChange cutoff, default 0.25.
 #' @param pvalue.cutoff pvalue cutoff to filter, default 0.05.
-#' @param adjustP.cutoff ajusted pvalue cutoff to be colored in plot, default 0.01.
+#' @param adjustP.cutoff adjusted pvalue cutoff to be colored in plot, default 0.01.
 #' @param topGeneN top genes to be labeled in plot, default 5.
 #' @param col.type point color type('updown/adjustP'), default "updown".
 #' @param back.col background color, default "grey93".
@@ -17,9 +17,9 @@
 #' @param tile.col cluster tile fill color, default jjAnno::useMyCol("paired",n = 9).
 #' @param ... other arguments passed by "geom_text_repel".
 #' @param cluster.order whether given your cluster orders, default NULL.
-#' @param polar whether make the plot to br polar, default FASLE.
+#' @param polar whether make the plot to br polar, default FALSE.
 #' @param expand the y axis expand, default c(-1,1).
-#' @param flip whether flip the plot, default FASLE.
+#' @param flip whether flip the plot, default FALSE.
 #'
 #' @param order.by top marker gene selection method, how the order is, default c("avg_log2FC").
 #'
@@ -227,7 +227,7 @@ jjVolcano <- function(
 
 ###############################
 #' This is a test data for this package
-#' test data describtion
+#' test data description
 #'
 #' @name pbmc.markers
 #' @docType data

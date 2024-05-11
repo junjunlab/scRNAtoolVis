@@ -1,6 +1,6 @@
-#' @name markerVocalno
+#' @name markerVolcano
 #' @author Junjun Lao
-#' @title Marker genes vocalno plot
+#' @title Marker genes volcano plot
 #' @param markers Dataframe marker genes from findAllmarkers function from seurat.
 #' @param ownGene Your own gene names to be labeled on plot, defaults is null.
 #' @param topn  Numbers top genes to label, defaults is 5.
@@ -8,10 +8,10 @@
 #' @param hlineSize Hline size, defaults is 1.
 #' @param hlineColor Hline color, defaults is 'grey50'.
 #' @param pforce  Positive gene force parameters to avoid overlap gene labels, defaults is 5.
-#' @param nforce Negtive gene force parameters to avoid overlap gene labels, defaults is 2.5.
-#' @param nudge_x Ajustments on the horizotal of the gene label, defaults is 0.8.
-#' @param pnudge_y Ajustments on the horizotal of the positive gene label, defaults is 0.25.
-#' @param nnudge_y Ajustments on the horizotal of the negtive gene label, defaults is 0.
+#' @param nforce Negative gene force parameters to avoid overlap gene labels, defaults is 2.5.
+#' @param nudge_x Adjustments on the horizontal of the gene label, defaults is 0.8.
+#' @param pnudge_y Adjustments on the horizontal of the positive gene label, defaults is 0.25.
+#' @param nnudge_y Adjustments on the horizontal of the negative gene label, defaults is 0.
 #' @param base_size Theme base size, defaults is 14.
 #' @param facetColor Facet border color, defaults is NA.
 #' @param facetFill Facet fill color, defaults is 'white'.
@@ -25,16 +25,16 @@
 #' test <- system.file("extdata", "pbmc.markers.csv", package = "scRNAtoolVis")
 #' markers <- read.csv(test)
 #'
-#' markerVocalno(
+#' markerVolcano(
 #'   markers = markers,
 #'   topn = 5,
 #'   labelCol = ggsci::pal_npg()(9)
 #' )
-# define viriables
+# define variables
 globalVariables(c("avg_log2FC", "cluster", "gene", "pct.1", "pct.2"))
 
 # define function
-markerVocalno <- function(
+markerVolcano <- function(
     markers = NULL,
     ownGene = NULL,
     topn = 5,

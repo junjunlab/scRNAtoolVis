@@ -12,10 +12,10 @@
 #' @param high "string",point color with high expression.
 #' @param axes "string",show multiple corner axis or only one (mul/one), default "mul".
 #' @param legendPos "string",legend position same as ggplot theme function, default "right".
-#' @param stripCol "string",facet balckground color, defaults "white".
+#' @param stripCol "string",facet background color, defaults "white".
 #' @param pSize "num",point size.
 #' @param arrowType "string",arrow type (open/closed), default "closed".
-#' @param lineTextcol "string",facet balckground color, default "white".
+#' @param lineTextcol "string",facet background color, default "white".
 #' @param cornerTextSize "num", the corner label text size, default is 5.
 #' @param base_size "num", theme base size, default is 14.
 #' @param themebg Another theme style, default is 'default', or 'bwCorner'.
@@ -59,7 +59,7 @@
 #' )
 #'
 #'
-# define viriables
+# define variables
 globalVariables(c("x1", "y1", "linegrou", "angle", "lab", "gene_name", "scaledValue"))
 
 # define function
@@ -113,7 +113,7 @@ FeatureCornerAxes <- function(
   # data range
   range <- floor(min(min(pc12[, 1]), min(pc12[, 2])))
 
-  # get botomn-left coord
+  # get bottom-left coord
   lower <- range - relDist * abs(range)
 
   # label reldist to axes
@@ -135,13 +135,13 @@ FeatureCornerAxes <- function(
   }
 
   if (axes == "mul") {
-    # axies data
+    # axises data
     axes <- data.frame(
       "x1" = c(lower, lower, lower, linelen),
       "y1" = c(lower, linelen, lower, lower),
       "linegrou" = c(1, 1, 2, 2)
     )
-    # axies label
+    # axises label
     label <- data.frame(
       "lab" = c(axs_label),
       "angle" = c(90, 0),
@@ -166,14 +166,14 @@ FeatureCornerAxes <- function(
       }
     }
 
-    # axies data
+    # axises data
     axes <- data.frame(
       "x1" = c(lower, lower, lower, linelen),
       "y1" = c(lower, linelen, lower, lower),
       "linegrou" = c(1, 1, 2, 2),
       "group" = rep(firstFacet, 2)
     )
-    # axies label
+    # axises label
     label <- data.frame(
       "lab" = c(axs_label),
       angle = c(90, 0),

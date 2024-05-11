@@ -15,7 +15,7 @@
 #' @param legendPos "string", legend position same as ggplot theme function, default "right".
 #' @param keySize The legned point size, default is 5.
 #' @param lineTextcol "string", corner line and label color, default "black".
-#' @param stripCol "string", facet balckground color, default "white".
+#' @param stripCol "string", facet background color, default "white".
 #' @param arrowType "string", arrow type (open/closed), default "closed".
 #' @param cornerTextSize "num", the corner label text size, default is 3.
 #' @param base_size "num", theme base size, default is 14.
@@ -33,8 +33,8 @@
 #'
 #' @param cellLabel Whether to label cell type on plot, default is FALSE.
 #' @param cellLabelSize Cell type label size, default is 6.
-#' @param cellLabelColor Cell type label color, default is "balck".
-#' @param show.legend Wheher show legend, default is TRUE.
+#' @param cellLabelColor Cell type label color, default is "black".
+#' @param show.legend Whether show legend, default is TRUE.
 #'
 #' @return Return a ggplot object.
 #' @export
@@ -85,7 +85,7 @@
 #'   relLength = 0.5
 #' )
 #'
-# define viriables
+# define variables
 globalVariables(c("x1", "y1", "linegrou", "angle", "lab", ".data"))
 
 # define function
@@ -146,7 +146,7 @@ clusterCornerAxes <- function(
   # data range
   range <- floor(min(min(pc12[, 1]), min(pc12[, 2])))
 
-  # get botomn-left coord
+  # get bottom-left coord
   lower <- range - relDist * abs(range)
 
   # label reldist to axes

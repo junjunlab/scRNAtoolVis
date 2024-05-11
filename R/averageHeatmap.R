@@ -55,7 +55,7 @@
 #' )
 #'
 # define function
-AverageHeatmap <- function(
+averageHeatmap <- function(
     object = NULL,
     markerGene = NULL,
     group.by = "ident",

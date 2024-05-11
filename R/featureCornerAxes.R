@@ -63,7 +63,7 @@
 globalVariables(c("x1", "y1", "linegrou", "angle", "lab", "gene_name", "scaledValue"))
 
 # define function
-FeatureCornerAxes <- function(
+featureCornerAxes <- function(
     object = NULL,
     reduction = "umap",
     features = NULL,

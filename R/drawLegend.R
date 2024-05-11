@@ -64,8 +64,7 @@ drawLegend <- function(
     color <- rev(col)
   }
 
-  pleg <-
-    ggplot2::ggplot(leg.data, ggplot2::aes(x = x, y = y)) +
+  pleg <- ggplot2::ggplot(leg.data, ggplot2::aes(x = x, y = y)) +
     ggplot2::geom_point(
       ggplot2::aes(color = cellType),
       show.legend = FALSE,

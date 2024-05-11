@@ -149,7 +149,7 @@ FeatureCornerAxes <- function(
       "y1" = c(mid, lower - labelRel)
     )
   } else if (axes == "one") {
-    # add specific group cornner
+    # add specific group corner
     if (is.null(cornerVariable)) {
       lev <- levels(pc12[, groupFacet])
       if (!is.null(lev)) {

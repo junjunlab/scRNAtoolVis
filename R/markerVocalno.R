@@ -58,16 +58,16 @@ markerVolcano <- function(
     toppos <- markers %>%
       dplyr::group_by(cluster) %>%
       dplyr::top_n(n = topn, wt = avg_log2FC)
-    topnegtive <- markers %>%
+    topneg <- markers %>%
       dplyr::group_by(cluster) %>%
       dplyr::top_n(n = -topn, wt = avg_log2FC)
 
     # merge
-    topgene <- rbind(toppos, topnegtive)
+    topgene <- rbind(toppos, topneg)
   } else {
     topgene <- markers %>% dplyr::filter(gene %in% ownGene)
     toppos <- topgene %>% dplyr::filter(avg_log2FC > 0)
-    topnegtive <- topgene %>% dplyr::filter(avg_log2FC < 0)
+    topneg <- topgene %>% dplyr::filter(avg_log2FC < 0)
   }
 
   # plot
@@ -98,7 +98,7 @@ markerVolcano <- function(
       nudge_x = -nudge_x - (toppos$pct.1 - toppos$pct.2)
     ) +
     ggrepel::geom_text_repel(
-      data = topnegtive,
+      data = topneg,
       ggplot2::aes(
         x = pct.1 - pct.2,
         y = avg_log2FC,
@@ -110,7 +110,7 @@ markerVolcano <- function(
       hjust = 0,
       nudge_y = nnudge_y,
       force = nforce,
-      nudge_x = nudge_x - (topnegtive$pct.1 - topnegtive$pct.2)
+      nudge_x = nudge_x - (topneg$pct.1 - topneg$pct.2)
     ) +
     ggplot2::geom_point(
       data = topgene,

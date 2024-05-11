@@ -138,8 +138,7 @@ tracksPlot <- function(
   }
 
   # main layer
-  pmain <-
-    ggplot2::ggplot(df_long) +
+  pmain <- ggplot2::ggplot(df_long) +
     ggplot2::theme_bw(base_size = 12) +
     facet_nested +
     # do.call(

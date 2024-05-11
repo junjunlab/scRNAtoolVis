@@ -139,8 +139,8 @@ jjVolcano <- function(
       ggplot2::aes(x = cluster, y = max), fill = back.col
     )
 
-  # ap1 <- paste("adjust Pvalue >= ",adjustP.cutoff,sep = '')
-  # ap2 <- paste("adjust Pvalue < ",adjustP.cutoff,sep = '')
+  # ap1 <- paste("adjust Pvalue >= ", adjustP.cutoff, sep = '')
+  # ap2 <- paste("adjust Pvalue < ", adjustP.cutoff, sep = '')
 
   # color type
   if (col.type == "updown") {

@@ -43,7 +43,7 @@
 #' @param hjust annoSegment text hjust, default 0.
 #' @param legend.position ggplot legend position, default "right".
 #' @param bar.legendTitle colorbar legend title, default "Mean expression in group".
-#' @param point.lengdTitle point size legend title, default "Fraction of cells in group (%)".
+#' @param point.legendTitle point size legend title, default "Fraction of cells in group (%)".
 #' @param ... other parameters passed to annoSegment function.
 #'
 #' @param gene.order supply your own gene orders, default NULL.
@@ -149,7 +149,7 @@ jjDotPlot <- function(
     hjust = 0,
     legend.position = "right",
     bar.legendTitle = "Mean expression \n in group",
-    point.lengdTitle = "Fraction of cells \n in group (%)",
+    point.legendTitle = "Fraction of cells \n in group (%)",
     ...) {
   # set assays
   assay <- assay %||% Seurat::DefaultAssay(object = object)
@@ -321,7 +321,7 @@ jjDotPlot <- function(
   # point size layer
   point.layer <- ggplot2::guides(
     size = ggplot2::guide_legend(
-      title = point.lengdTitle,
+      title = point.legendTitle,
       title.position = "top",
       title.hjust = 0.5,
       label.position = "bottom",

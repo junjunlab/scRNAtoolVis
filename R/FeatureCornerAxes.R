@@ -63,29 +63,30 @@
 globalVariables(c("x1", "y1", "linegrou", "angle", "lab", "gene_name", "scaledValue"))
 
 # define function
-FeatureCornerAxes <- function(object = NULL,
-                              reduction = "umap",
-                              features = NULL,
-                              groupFacet = "orig.ident",
-                              minExp = NULL,
-                              maxExp = NULL,
-                              relLength = 0.25,
-                              relDist = 0.1,
-                              aspect.ratio = NULL,
-                              low = "lightgrey",
-                              high = "red",
-                              axes = "mul",
-                              show.legend = TRUE,
-                              legendPos = "right",
-                              stripCol = "white",
-                              cornerVariable = NULL,
-                              nLayout = NULL,
-                              pSize = 1,
-                              arrowType = "closed",
-                              lineTextcol = "black",
-                              cornerTextSize = 3,
-                              base_size = 14,
-                              themebg = "default") {
+FeatureCornerAxes <- function(
+    object = NULL,
+    reduction = "umap",
+    features = NULL,
+    groupFacet = "orig.ident",
+    minExp = NULL,
+    maxExp = NULL,
+    relLength = 0.25,
+    relDist = 0.1,
+    aspect.ratio = NULL,
+    low = "lightgrey",
+    high = "red",
+    axes = "mul",
+    show.legend = TRUE,
+    legendPos = "right",
+    stripCol = "white",
+    cornerVariable = NULL,
+    nLayout = NULL,
+    pSize = 1,
+    arrowType = "closed",
+    lineTextcol = "black",
+    cornerTextSize = 3,
+    base_size = 14,
+    themebg = "default") {
   # make PC data
   reduc <- data.frame(Seurat::Embeddings(object, reduction = reduction))
 
@@ -125,9 +126,9 @@ FeatureCornerAxes <- function(object = NULL,
   mid <- abs(relLength * lower) / 2 + lower
 
   # give reduction type
-  if (startsWith(reduction,"umap")) {
+  if (startsWith(reduction, "umap")) {
     axs_label <- paste("UMAP", 2:1, sep = "")
-  } else if (startsWith(reduction,"tsne")) {
+  } else if (startsWith(reduction, "tsne")) {
     axs_label <- paste("t-SNE", 2:1, sep = "")
   } else {
     print("Please give correct type(umap or tsne)!")
@@ -149,18 +150,18 @@ FeatureCornerAxes <- function(object = NULL,
     )
   } else if (axes == "one") {
     # add specific group cornner
-    if(is.null(cornerVariable)){
+    if (is.null(cornerVariable)) {
       lev <- levels(pc12[, groupFacet])
-      if(!is.null(lev)){
-        firstFacet <- factor(lev[1],levels = lev)
-      }else{
+      if (!is.null(lev)) {
+        firstFacet <- factor(lev[1], levels = lev)
+      } else {
         firstFacet <- unique(pc12[, groupFacet])[1]
       }
-    }else{
+    } else {
       lev <- levels(pc12[, groupFacet])
-      if(!is.null(lev)){
-        firstFacet <- factor(cornerVariable,levels = lev)
-      }else{
+      if (!is.null(lev)) {
+        firstFacet <- factor(cornerVariable, levels = lev)
+      } else {
         firstFacet <- cornerVariable
       }
     }
@@ -190,63 +191,77 @@ FeatureCornerAxes <- function(object = NULL,
 
   ####################################
   # set color value range
-  if(is.null(minExp) & is.null(maxExp)){
+  if (is.null(minExp) && is.null(maxExp)) {
     minexp <- 0
-    maxexp <- round(max(megredf$scaledValue) + 1,digits = 0)
-  }else{
+    maxexp <- round(max(megredf$scaledValue) + 1, digits = 0)
+  } else {
     minexp <- minExp
     maxexp <- maxExp
   }
 
   ####################################################
   # plot
-  pmain <- ggplot2::ggplot(megredf,
-                           ggplot2::aes(x = megredf[, 1], y = megredf[, 2])) +
-    ggplot2::geom_point(ggplot2::aes(color = scaledValue),
-                        size = pSize,
-                        show.legend = show.legend) +
+  pmain <- ggplot2::ggplot(
+    megredf,
+    ggplot2::aes(x = megredf[, 1], y = megredf[, 2])
+  ) +
+    ggplot2::geom_point(
+      ggplot2::aes(color = scaledValue),
+      size = pSize,
+      show.legend = show.legend
+    ) +
     ggplot2::theme_classic(base_size = base_size) +
-    ggplot2::scale_color_gradient(name = "",low = low,high = high,
-                                  limits = c(minexp,maxexp),
-                                  na.value = high) +
+    ggplot2::scale_color_gradient(
+      name = "", low = low, high = high,
+      limits = c(minexp, maxexp),
+      na.value = high
+    ) +
     ggplot2::labs(x = "", y = "") +
-    ggplot2::geom_line(data = axes,
-                       ggplot2::aes(x = x1, y = y1, group = linegrou),
-                       color = lineTextcol,
-                       arrow = ggplot2::arrow(length = ggplot2::unit(0.1, "inches"),
-                                              ends = "last",
-                                              type = arrowType)) +
-    ggplot2::geom_text(data = label,
-                       ggplot2::aes(x = x1,y = y1,angle = angle,label = lab),
-                       fontface = "italic",
-                       color = lineTextcol,
-                       size = cornerTextSize) +
-    ggplot2::theme(strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
-                   strip.text = ggplot2::element_text(size = base_size),
-                   strip.text.y = ggplot2::element_text(angle = 0),
-                   aspect.ratio = aspect.ratio,
-                   legend.position = legendPos,
-                   plot.title = ggplot2::element_text(hjust = 0.5),
-                   axis.line = ggplot2::element_blank(),
-                   axis.ticks = ggplot2::element_blank(),
-                   axis.text = ggplot2::element_blank())
+    ggplot2::geom_line(
+      data = axes,
+      ggplot2::aes(x = x1, y = y1, group = linegrou),
+      color = lineTextcol,
+      arrow = ggplot2::arrow(
+        length = ggplot2::unit(0.1, "inches"),
+        ends = "last",
+        type = arrowType
+      )
+    ) +
+    ggplot2::geom_text(
+      data = label,
+      ggplot2::aes(x = x1, y = y1, angle = angle, label = lab),
+      fontface = "italic",
+      color = lineTextcol,
+      size = cornerTextSize
+    ) +
+    ggplot2::theme(
+      strip.background = ggplot2::element_rect(colour = NA, fill = stripCol),
+      strip.text = ggplot2::element_text(size = base_size),
+      strip.text.y = ggplot2::element_text(angle = 0),
+      aspect.ratio = aspect.ratio,
+      legend.position = legendPos,
+      plot.title = ggplot2::element_text(hjust = 0.5),
+      axis.line = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_blank(),
+      axis.text = ggplot2::element_blank()
+    )
 
   ######################################
   # plot layout
-  if(is.null(nLayout)){
-    nLayout = length(features)
-  }else{
-    nLayout = nLayout
+  if (is.null(nLayout)) {
+    nLayout <- length(features)
+  } else {
+    nLayout <- nLayout
   }
 
   ######################################
   # facet plot
-  if(is.null(groupFacet)){
+  if (is.null(groupFacet)) {
     p1 <- pmain +
-      ggplot2::facet_wrap(facets = "gene_name",ncol = nLayout)
-  }else{
+      ggplot2::facet_wrap(facets = "gene_name", ncol = nLayout)
+  } else {
     p1 <- pmain +
-      ggplot2::facet_grid(facets = c("gene_name",groupFacet))
+      ggplot2::facet_grid(facets = c("gene_name", groupFacet))
   }
 
   ######################################
@@ -254,11 +269,13 @@ FeatureCornerAxes <- function(object = NULL,
   if (themebg == "bwCorner") {
     p2 <- p1 +
       ggplot2::theme_bw(base_size = base_size) +
-      ggplot2::theme(panel.grid = ggplot2::element_blank(),
-                     axis.text = ggplot2::element_blank(),
-                     axis.ticks = ggplot2::element_blank(),
-                     aspect.ratio = 1,
-                     strip.background = ggplot2::element_rect(colour = NA, fill = stripCol))
+      ggplot2::theme(
+        panel.grid = ggplot2::element_blank(),
+        axis.text = ggplot2::element_blank(),
+        axis.ticks = ggplot2::element_blank(),
+        aspect.ratio = 1,
+        strip.background = ggplot2::element_rect(colour = NA, fill = stripCol)
+      )
   } else if (themebg == "default") {
     p2 <- p1
   }
@@ -266,4 +283,3 @@ FeatureCornerAxes <- function(object = NULL,
   # output
   return(p2)
 }
-

@@ -25,54 +25,60 @@
 #' test <- system.file("extdata", "pbmc.markers.csv", package = "scRNAtoolVis")
 #' markers <- read.csv(test)
 #'
-#' markerVocalno(markers = markers,
-#'               topn = 5,
-#'               labelCol = ggsci::pal_npg()(9))
-
+#' markerVocalno(
+#'   markers = markers,
+#'   topn = 5,
+#'   labelCol = ggsci::pal_npg()(9)
+#' )
 # define viriables
 globalVariables(c("avg_log2FC", "cluster", "gene", "pct.1", "pct.2"))
 
 # define function
-markerVocalno <- function(markers = NULL,
-                          ownGene = NULL,
-                          topn = 5,
-                          log2FC = 0.25,
-                          labelCol = NULL,
-                          hlineSize = 1,
-                          hlineColor = 'grey50',
-                          pforce = 5,
-                          nforce = 2.5,
-                          nudge_x = 0.8,
-                          pnudge_y = 0.25,
-                          nnudge_y = 0,
-                          base_size = 14,
-                          facetColor = NA,
-                          facetFill = 'white',
-                          ylab = 'Log2-Fold Change',
-                          nrow = 1) {
+markerVocalno <- function(
+    markers = NULL,
+    ownGene = NULL,
+    topn = 5,
+    log2FC = 0.25,
+    labelCol = NULL,
+    hlineSize = 1,
+    hlineColor = "grey50",
+    pforce = 5,
+    nforce = 2.5,
+    nudge_x = 0.8,
+    pnudge_y = 0.25,
+    nnudge_y = 0,
+    base_size = 14,
+    facetColor = NA,
+    facetFill = "white",
+    ylab = "Log2-Fold Change",
+    nrow = 1) {
   # whether supply own gene names
-  if(is.null(ownGene)){
+  if (is.null(ownGene)) {
     # top genes
-    toppos <- markers %>% dplyr::group_by(cluster) %>%
+    toppos <- markers %>%
+      dplyr::group_by(cluster) %>%
       dplyr::top_n(n = topn, wt = avg_log2FC)
-    topnegtive <- markers %>% dplyr::group_by(cluster) %>%
+    topnegtive <- markers %>%
+      dplyr::group_by(cluster) %>%
       dplyr::top_n(n = -topn, wt = avg_log2FC)
 
     # merge
     topgene <- rbind(toppos, topnegtive)
-  }else{
+  } else {
     topgene <- markers %>% dplyr::filter(gene %in% ownGene)
     toppos <- topgene %>% dplyr::filter(avg_log2FC > 0)
     topnegtive <- topgene %>% dplyr::filter(avg_log2FC < 0)
   }
 
   # plot
-  ggplot2::ggplot(markers,
-                  ggplot2::aes(x = pct.1 - pct.2, y = avg_log2FC)) +
-    ggplot2::geom_point(color = 'grey80') +
+  ggplot2::ggplot(
+    markers,
+    ggplot2::aes(x = pct.1 - pct.2, y = avg_log2FC)
+  ) +
+    ggplot2::geom_point(color = "grey80") +
     ggplot2::geom_hline(
       yintercept = c(-log2FC, log2FC),
-      lty = 'dashed',
+      lty = "dashed",
       size = hlineSize,
       color = hlineColor
     ) +
@@ -84,8 +90,8 @@ markerVocalno <- function(markers = NULL,
         label = gene,
         color = cluster
       ),
-      show.legend = F,
-      direction = 'y',
+      show.legend = FALSE,
+      direction = "y",
       hjust = 1,
       nudge_y = pnudge_y,
       force = pforce,
@@ -99,8 +105,8 @@ markerVocalno <- function(markers = NULL,
         label = gene,
         color = cluster
       ),
-      show.legend = F,
-      direction = 'y',
+      show.legend = FALSE,
+      direction = "y",
       hjust = 0,
       nudge_y = nnudge_y,
       force = nforce,
@@ -108,14 +114,14 @@ markerVocalno <- function(markers = NULL,
     ) +
     ggplot2::geom_point(
       data = topgene,
-      show.legend = F,
+      show.legend = FALSE,
       ggplot2::aes(
         x = pct.1 - pct.2,
         y = avg_log2FC,
         color = cluster
       )
     ) +
-    ggplot2::scale_color_manual(name = '', values = labelCol) +
+    ggplot2::scale_color_manual(name = "", values = labelCol) +
     # x y breaks label
     # scale_y_continuous(limits = c(-6,10),breaks = seq(-6,10,2)) +
     # scale_x_continuous(limits = c(-1,1),breaks = seq(-1,1,0.5)) +
@@ -125,7 +131,7 @@ markerVocalno <- function(markers = NULL,
       axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
       strip.background = ggplot2::element_rect(color = facetColor, fill = facetFill)
     ) +
-    ggplot2::xlab(expression(Delta ~ 'Percentage Difference')) +
+    ggplot2::xlab(expression(Delta ~ "Percentage Difference")) +
     ggplot2::ylab(ylab) +
-    ggplot2::facet_wrap(~ cluster, nrow = nrow, scales = 'fixed')
+    ggplot2::facet_wrap(~cluster, nrow = nrow, scales = "fixed")
 }

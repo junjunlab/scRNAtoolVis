@@ -16,11 +16,11 @@
 
 \item{aspect.ratio}{"num", plot width and height ratio, default NULL.}
 
-\item{noSplit}{'logic', whether to split/facet the plot, default "TRUE".}
+\item{noSplit}{"logic", whether to split/facet the plot, default "TRUE".}
 
 \item{nrow}{"num", rows to plot when noSplit = FALSE.}
 
-\item{relLength}{'num', the corner axis line relative length to plot axis(0-1).}
+\item{relLength}{"num", the corner axis line relative length to plot axis(0-1).}
 
 \item{relDist}{"num" ,the relative distance of corner axis label to axis.}
 
@@ -32,7 +32,7 @@
 
 \item{lineTextcol}{"string", corner line and label color, default "black".}
 
-\item{stripCol}{"string", facet balckground color, default "white".}
+\item{stripCol}{"string", facet background color, default "white".}
 
 \item{arrowType}{"string", arrow type (open/closed), default "closed".}
 
@@ -40,17 +40,21 @@
 
 \item{base_size}{"num", theme base size, default is 14.}
 
-\item{themebg}{Another theme style, default is 'default', or 'bwCorner'.}
+\item{themebg}{Another theme style, default is "default", or "bwCorner".}
 
-\item{addCircle}{Logic, whether add circle on clusters, default is 'FALSE'.}
+\item{addCircle}{"logic", whether add circle on clusters, default is "FALSE".}
 
-\item{cicAlpha}{"num", circle fill color alpha, default is 0.1,}
+\item{addCircle.legacy}{"logic", using the legacy version to add a circle, the parameters \code{nbin}, \code{nsm}, \code{addsm}, \code{sfac} and \code{qval} are only applicable to legacy, default is "FALSE".}
+
+\item{cicAlpha}{"num", circle fill color alpha, default is 0.1.}
+
+\item{cicDelta}{"num", the distance to extend the curve (circle), this parameter only takes effect when \code{addCircle.legacy = FALSE}.}
 
 \item{cicLineSize}{"num", circle line size, default is 1.}
 
-\item{cicLineColor}{"num", circle line color, default is 'grey50'.}
+\item{cicLineColor}{"num", circle line color, default is "grey50".}
 
-\item{cicLineLty}{"num", circle line type, default is 'dashed'.}
+\item{cicLineLty}{"num", circle line type, default is "dashed".}
 
 \item{nbin}{"num", number of points used to shape the hull, default 100.}
 
@@ -66,9 +70,9 @@
 
 \item{cellLabelSize}{Cell type label size, default is 6.}
 
-\item{cellLabelColor}{Cell type label color, default is "balck".}
+\item{cellLabelColor}{Cell type label color, default is "black".}
 
-\item{show.legend}{Wheher show legend, default is TRUE.}
+\item{show.legend}{Whether show legend, default is TRUE.}
 }
 \value{
 Return a ggplot object.

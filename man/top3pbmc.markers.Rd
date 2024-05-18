@@ -4,7 +4,7 @@
 \name{top3pbmc.markers}
 \alias{top3pbmc.markers}
 \title{This is a test data for this package
-test data describtion}
+test data description}
 \format{
 An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 27 rows and 7 columns.
 }
@@ -13,7 +13,7 @@ top3pbmc.markers
 }
 \description{
 This is a test data for this package
-test data describtion
+test data description
 }
 \author{
 Junjun Lao

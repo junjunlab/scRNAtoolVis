@@ -2,21 +2,7 @@
 % Please edit documentation in R/tracksPlot.R
 \name{tracksPlot}
 \alias{tracksPlot}
-\title{Generate a track or heatmap plot}
-\usage{
-tracksPlot(
-  object = NULL,
-  plot.type = c("track", "heatmap"),
-  genes = NULL,
-  vmin = -2,
-  vmax = 2,
-  cell.order = NULL,
-  gene.order = NULL,
-  facet_nested_params = list(),
-  theme_params = list(),
-  strip_nested_params = list()
-)
-}
+\title{This function generates a track or heatmap plot based on the provided data.}
 \arguments{
 \item{object}{An optional object containing the data.}
 

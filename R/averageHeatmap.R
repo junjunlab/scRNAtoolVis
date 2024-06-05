@@ -85,16 +85,29 @@ averageHeatmap <- function(
     gene.order = NULL,
     ...) {
   # get cells mean gene expression
-  mean_gene_exp <- as.matrix(
-    data.frame(
-      Seurat::AverageExpression(object,
-        features = markerGene,
-        group.by = group.by,
-        assays = assays,
-        slot = slot
+  if(utils::packageVersion("Seurat") > 4){
+    mean_gene_exp <- as.matrix(
+      data.frame(
+        Seurat::AverageExpression(object,
+                                  features = markerGene,
+                                  group.by = group.by,
+                                  assays = assays,
+                                  layer = slot
+        )
       )
     )
-  )
+  }else{
+    mean_gene_exp <- as.matrix(
+      data.frame(
+        Seurat::AverageExpression(object,
+                                  features = markerGene,
+                                  group.by = group.by,
+                                  assays = assays,
+                                  slot = slot
+        )
+      )
+    )
+  }
 
   # add colnames
   # name1 <- gsub(

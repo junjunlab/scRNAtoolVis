@@ -502,13 +502,13 @@ jjDotPlot <- function(
       annoPos = "top",
       aesGroup = TRUE,
       aesGroName = "celltype",
-      segWidth = 0.8,
-      lwd = 3, addBranch = TRUE, branDirection = -1,
+      segWidth = segWidth,
+      lwd = lwd, addBranch = TRUE, branDirection = -1,
       pCol = rep("black", length(unique(celltype_info$cluster))),
-      addText = TRUE, textRot = 90,
+      addText = TRUE, textRot = textRot,
       textCol = rep("black", length(unique(celltype_info$cluster))),
-      textSize = 14,
-      hjust = 0,
+      textSize = textSize,
+      hjust = hjust,
       ...
     )
   } else {

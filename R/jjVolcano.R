@@ -20,6 +20,7 @@
 #' @param polar whether make the plot to br polar, default FALSE.
 #' @param expand the y axis expand, default c(-1,1).
 #' @param flip whether flip the plot, default FALSE.
+#' @param celltypeSize the fontsize of celltype, default 3.
 #'
 #' @param order.by top marker gene selection method, how the order is, default c("avg_log2FC").
 #'
@@ -50,6 +51,7 @@ jjVolcano <- function(
     polar = FALSE,
     expand = c(-1, 1),
     flip = FALSE,
+    celltypeSize = 3,
     ...) {
   # filter data
   diff.marker <- diffData %>%
@@ -204,7 +206,7 @@ jjVolcano <- function(
     if (flip == TRUE) {
       p5 <- p4 +
         ggplot2::scale_y_continuous(n.breaks = 6) +
-        ggplot2::geom_label(ggplot2::aes(x = cluster, y = 0, label = cluster)) +
+        ggplot2::geom_label(ggplot2::aes(x = cluster, y = 0, label = cluster),size = celltypeSize) +
         ggplot2::theme(
           axis.line.y = ggplot2::element_blank(),
           axis.text.y = ggplot2::element_blank(),
@@ -214,7 +216,7 @@ jjVolcano <- function(
     } else {
       p5 <- p4 +
         ggplot2::scale_y_continuous(n.breaks = 6) +
-        ggplot2::geom_text(ggplot2::aes(x = cluster, y = 0, label = cluster)) +
+        ggplot2::geom_text(ggplot2::aes(x = cluster, y = 0, label = cluster),size = celltypeSize) +
         ggplot2::theme(
           axis.line.x = ggplot2::element_blank(),
           axis.text.x = ggplot2::element_blank(),

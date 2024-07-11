@@ -40,6 +40,8 @@
 
 \item{flip}{whether flip the plot, default FALSE.}
 
+\item{celltypeSize}{the fontsize of celltype, default 3.}
+
 \item{order.by}{top marker gene selection method, how the order is, default c("avg_log2FC").}
 }
 \value{

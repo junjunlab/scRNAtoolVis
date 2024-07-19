@@ -82,11 +82,13 @@ averageHeatmap <- function(
     cluster.order = NULL,
     cluster_columns = FALSE,
     cluster_rows = FALSE,
+    show_row_dend = TRUE,
+    show_column_dend = TRUE,
     gene.order = NULL,
     ...) {
   # get cells mean gene expression
   # check Seurat version first
-  if(utils::packageVersion("Seurat") > 4){
+  if(utils::packageVersion("Seurat") >= 5){
     mean_gene_exp <- as.matrix(
       data.frame(
         Seurat::AverageExpression(object,
@@ -202,6 +204,8 @@ averageHeatmap <- function(
       name = "Z-score",
       cluster_columns = cluster_columns,
       cluster_rows = cluster_rows,
+      show_row_dend = show_row_dend,
+      show_column_dend = show_column_dend,
       row_title = row_title,
       # column_title = "Clusters",
       right_annotation = right_annotation,

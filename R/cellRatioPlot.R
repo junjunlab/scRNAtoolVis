@@ -9,21 +9,29 @@
 #' @param flow.alpha flow color alpha, default 0.25.
 #' @param flow.curve flow curve rate, default 0.
 #' @param fill.col supply your own fill colors, default NULL.
+#' @param sample.order the order for samples, default NULL.
 #'
 #' @return a ggplot object.
 #' @export
 
 globalVariables(c("n", "num"))
+
 cellRatioPlot <- function(
     object = NULL,
     sample.name = NULL,
     celltype.name = NULL,
+    sample.order = NULL,
     col.width = 0.7,
     flow.alpha = 0.25,
     flow.curve = 0,
     fill.col = NULL) {
   # get metainfo
   meta <- object@meta.data
+
+  # order
+  if(!is.null(sample.order)){
+    meta$sample.name <- factor(meta$sample.name,levels = sample.order)
+  }
 
   # calculate percent ratio
   ratio.info <- meta %>%

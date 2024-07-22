@@ -39,6 +39,8 @@
 #' @param cellLabelColor Cell type label color, default is "black".
 #' @param show.legend Whether show legend, default is TRUE.
 #'
+#' @importFrom ggunchull stat_unchull0
+#'
 #' @return Return a ggplot object.
 #' @export
 #' @examples

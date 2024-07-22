@@ -17,6 +17,8 @@
 \item{flow.curve}{flow curve rate, default 0.}
 
 \item{fill.col}{supply your own fill colors, default NULL.}
+
+\item{sample.order}{the order for samples, default NULL.}
 }
 \value{
 a ggplot object.

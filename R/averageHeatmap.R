@@ -200,6 +200,8 @@ averageHeatmap <- function(
     # plot
     ComplexHeatmap::Heatmap(
       htdf,
+      show_row_dend = TRUE,
+      show_column_dend = TRUE,
       name = "Z-score",
       cluster_columns = cluster_columns,
       cluster_rows = cluster_rows,
@@ -223,6 +225,8 @@ averageHeatmap <- function(
     # plot
     ComplexHeatmap::Heatmap(
       htdf,
+      show_row_dend = TRUE,
+      show_column_dend = TRUE,
       name = "Z-score",
       cluster_columns = FALSE,
       cluster_rows = FALSE,

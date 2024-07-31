@@ -86,7 +86,8 @@ averageHeatmap <- function(
     ...) {
   # get cells mean gene expression
   # check Seurat version first
-  if(utils::packageVersion("Seurat") > 4){
+  vr <- utils::compareVersion(as.character(utils::packageVersion("Seurat")),"5")
+  if(vr == 1){
     mean_gene_exp <- as.matrix(
       data.frame(
         Seurat::AverageExpression(object,

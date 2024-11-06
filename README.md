@@ -19,8 +19,10 @@ library(scRNAtoolVis)
 > Jun Zhang (2022). *scRNAtoolVis: Useful Functions to Make Your scRNA-seq Plot More Cool!.*  <https://github.com/junjunlab/scRNAtoolVis>, <https://junjunlab.github.io/scRNAtoolVis-manual/>.
 
 ## More examples see
->
-> - <https://junjunlab.github.io/scRNAtoolVis-manual/>
+
+<https://junjunlab.github.io/scRNAtoolVis-manual/>
+
+---
 
 ![image](https://user-images.githubusercontent.com/64965509/198531385-00b0587d-e202-4417-b11d-53cd419594e6.png)
 

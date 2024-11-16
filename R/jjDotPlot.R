@@ -35,6 +35,7 @@
 #' @param bar.width the colorbar legend width, default 4.5.
 #' @param plot.margin the plot margin, default c(1,1,1,1) which relative to c(t,r,b,l).
 #' @param anno whether anno celltype, default FALSE.
+#' @param anno_y_position The celltype annotation y axis position ajustment, default NULL.
 #' @param aesGroName the markerGene data.frame column name which refers to celltype, default "cluster".
 #' @param segWidth annoSegment width, default 0.8.
 #' @param lwd annoSegment line size, default 3.
@@ -141,6 +142,7 @@ jjDotPlot <- function(
     bar.width = 4.5,
     plot.margin = c(1, 1, 1, 1),
     anno = FALSE,
+    anno_y_position = NULL,
     aesGroName = "cluster",
     segWidth = 0.8,
     lwd = 3,
@@ -289,7 +291,7 @@ jjDotPlot <- function(
     ggplot2::theme_bw(base_size = base_size) +
     ggplot2::xlab("") +
     ggplot2::ylab("") +
-    ggplot2::coord_fixed(clip = "off") +
+    ggplot2::coord_cartesian(clip = "off") +
     ggplot2::theme(
       plot.margin = ggplot2::margin(
         t = plot.margin[1], r = plot.margin[2],
@@ -500,6 +502,7 @@ jjDotPlot <- function(
     panno <- jjAnno::annoSegment(
       object = pxtree,
       annoPos = "top",
+      yPosition = anno_y_position,
       aesGroup = TRUE,
       aesGroName = "celltype",
       segWidth = segWidth,

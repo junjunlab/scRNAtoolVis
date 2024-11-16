@@ -70,6 +70,8 @@
 
 \item{anno}{whether anno celltype, default FALSE.}
 
+\item{anno_y_position}{The celltype annotation y axis position ajustment, default NULL.}
+
 \item{aesGroName}{the markerGene data.frame column name which refers to celltype, default "cluster".}
 
 \item{segWidth}{annoSegment width, default 0.8.}

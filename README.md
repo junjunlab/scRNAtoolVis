@@ -1,7 +1,5 @@
 # scRNAtoolVis 
 
-[<img src="https://api.gitsponsors.com/api/badge/img?id=506459840" height="20">](https://api.gitsponsors.com/api/badge/link?p=PoIspNXiWSpQ7ADgxZrEGDWy2SDRsLXfgJRuLInak9EQrophtr7Pxk8wp/S40LEHSe7wWDGDajoer7Ax5ot6Tw==)
-
 <img src="man/scRNAtoolVis-logo.png" align="right" height="200" />
 
  Some useful function to make your scRNA-seq plot more beautiful.

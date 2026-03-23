@@ -158,18 +158,39 @@ jjDotPlot <- function(
   Seurat::DefaultAssay(object = object) <- assay
 
   # get gene expression
+  # check Seurat version first
+  vr <- utils::compareVersion(as.character(utils::packageVersion("Seurat")),"5")
+
   if (is.null(gene) && !is.null(markerGene)) {
-    geneExp <- Seurat::FetchData(
-      object = object,
-      vars = unique(markerGene$gene),
-      slot = slot
-    )
+    if(vr == 1){
+      geneExp <- Seurat::FetchData(
+        object = object,
+        vars = unique(markerGene$gene),
+        layer = slot
+      )
+    }else{
+      geneExp <- Seurat::FetchData(
+        object = object,
+        vars = unique(markerGene$gene),
+        slot = slot
+      )
+    }
+
   } else if (!is.null(gene) && is.null(markerGene)) {
-    geneExp <- Seurat::FetchData(
-      object = object,
-      vars = gene,
-      slot = slot
-    )
+    if(vr == 1){
+      geneExp <- Seurat::FetchData(
+        object = object,
+        vars = gene,
+        layer = slot
+      )
+    }else{
+      geneExp <- Seurat::FetchData(
+        object = object,
+        vars = gene,
+        slot = slot
+      )
+    }
+
   } else {
     print("Please supply  one option!")
   }

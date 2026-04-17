@@ -3,7 +3,10 @@
 #' @title using jjVolcano to visualize marker genes
 #'
 #' @param diffData diff results with data.frame format, default NULL.
-#' @param myMarkers whether supply your own gene labels, default NULL.
+#' @param myMarkers whether supply your own gene labels, default NULL. Accepts
+#'   either a character vector (applied to all clusters) or a named list of
+#'   character vectors where each name is a cluster and its value is the
+#'   markers to label for that cluster.
 #' @param log2FC.cutoff log2FoldChange cutoff, default 0.25.
 #' @param pvalue.cutoff pvalue cutoff to filter, default 0.05.
 #' @param adjustP.cutoff adjusted pvalue cutoff to be colored in plot, default 0.01.
@@ -119,8 +122,15 @@ jjVolcano <- function(
 
   # whether supply own genes
   if (!is.null(myMarkers)) {
-    top.marker <- diff.marker %>%
-      dplyr::filter(gene %in% myMarkers)
+    if (is.list(myMarkers)) {
+      top.marker <- purrr::imap_dfr(myMarkers, function(genes, cl) {
+        diff.marker %>%
+          dplyr::filter(cluster == cl & gene %in% genes)
+      })
+    } else {
+      top.marker <- diff.marker %>%
+        dplyr::filter(gene %in% myMarkers)
+    }
   } else {
     top.marker <- top.marker
   }

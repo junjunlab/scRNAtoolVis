@@ -6,7 +6,10 @@
 \arguments{
 \item{diffData}{diff results with data.frame format, default NULL.}
 
-\item{myMarkers}{whether supply your own gene labels, default NULL.}
+\item{myMarkers}{whether supply your own gene labels, default NULL. Accepts
+either a character vector (applied to all clusters) or a named list of
+character vectors where each name is a cluster and its value is the
+markers to label for that cluster.}
 
 \item{log2FC.cutoff}{log2FoldChange cutoff, default 0.25.}
 
